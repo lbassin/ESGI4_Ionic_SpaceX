@@ -1,3 +1,97 @@
-page-launches {
+.card-next-launch {
+    height: 100px;
 
+    img {
+        width: 75px;
+        height: 75px;
+        float: left;
+        margin-top: 12.5px;
+    }
+
+    .card-next-launch-infos {
+        width: calc(100% - 75px);
+        margin-left: 75px;
+        height: 100px;
+        text-align: center;
+    }
+}
+
+.countdown {
+
+    .countdown-days {
+        width: 20%;
+        height: 75px;
+        display: inline-block;
+        text-align: center;
+
+        .countdown-days-timer {
+            display: block;
+            height: 55px;
+            line-height: 55px;
+        }
+        .countdown-days-label {
+            display: block;
+        }
+    }
+    .countdown-hours {
+        width: 20%;
+        height: 75px;
+        display: inline-block;
+        text-align: center;
+
+        .countdown-hours-timer {
+            display: block;
+            height: 55px;
+            line-height: 55px;
+        }
+        .countdown-hours-label {
+            display: block;
+        }
+    }
+    .countdown-minutes {
+        width: 20%;
+        height: 75px;
+        display: inline-block;
+        text-align: center;
+
+        .countdown-minutes-timer {
+            display: block;
+            height: 55px;
+            line-height: 55px;
+        }
+        .countdown-minutes-label {
+            display: block;
+        }
+    }
+    .countdown-seconds {
+        width: 20%;
+        height: 75px;
+        display: inline-block;
+        text-align: center;
+
+        .countdown-seconds-timer {
+            display: block;
+            height: 55px;
+            line-height: 55px;
+        }
+        .countdown-seconds-label {
+            display: block;
+        }
+    }
+    .countdown-separator {
+        width: 5%;
+        height: 75px;
+        display: inline-block;
+        text-align: center;
+
+        .countdown-separator-timer {
+            display: block;
+            height: 55px;
+            line-height: 55px;
+        }
+        .countdown-separator-label {
+            display: block;
+            height: 20px;
+        }
+    }
 }

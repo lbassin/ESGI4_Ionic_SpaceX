@@ -8,27 +8,142 @@
 </ion-header>
 
 <ion-content>
-    
-    <ion-list>
-        <ion-item>
-            <ion-avatar item-start>
-                <img src="{{ nextLaunch?.links.mission_patch_small }}">
-            </ion-avatar>
-            <h2>{{ nextLaunch?.mission_name }}</h2>
-            <p>{{ nextLaunch?.details }}</p>
-            <p>{{ nextLaunch?.launch_date_utc }}</p>
-            <p>{{ countdown }}</p>
-        </ion-item>
 
-        <ion-item *ngFor="let launch of launches | slice:1">
-            <ion-avatar item-start>
-                <img src="{{ launch.links.mission_patch_small }}">
-            </ion-avatar>
-            <h2>{{ launch?.mission_name }}</h2>
-            <p>{{ launch?.details }}</p>
-            <p>{{ launch?.launch_date_utc }}</p>
+    <ion-list style="margin: 0px;">
+        <ion-item>
+            <div class="card-next-launch">
+                <img class="avatar-next-launch" src="{{ nextLaunch?.links.mission_patch_small }}">
+
+                <div class="card-next-launch-infos">
+                    <h2>{{ nextLaunch?.mission_name }}</h2>
+
+                    <p *ngIf="nextLaunch?.reuse.capsule || nextLaunch?.reuse.core || nextLaunch?.reuse.fairings || nextLaunch?.reuse.side_core1 || nextLaunch?.reuse.side_core2">
+                        <ion-badge item-end>reused</ion-badge>
+                    </p>
+
+                    <p *ngIf="nextLaunch?.details; else noDesc">{{ nextLaunch?.details }}</p>
+                    <ng-template #noDesc>
+                        <p>
+                            No description available
+                        </p>
+                    </ng-template> 
+                </div>
+            </div>
+
+            <div class="countdown">
+                <div class="countdown-days">
+                    <span class="countdown-days-timer">
+                        {{ nextLaunchDays }}
+                    </span>
+
+                    <span class="countdown-days-label" *ngIf="nextLaunchDays > 1; else noPlurialDay">
+                        days
+                    </span>
+                    <ng-template #noPlurialDay>
+                        <span class="countdown-days-label">
+                            day
+                        </span>
+                    </ng-template> 
+                </div>
+                <div class="countdown-hours">
+                    <span class="countdown-hours-timer">
+                        {{ nextLaunchHours }}
+                    </span>
+
+                    <span class="countdown-hours-label" *ngIf="nextLaunchHours > 1; else noPlurialHour">
+                        hours
+                    </span>
+                    <ng-template #noPlurialHour>
+                        <span class="countdown-hours-label">
+                            hour
+                        </span>
+                    </ng-template> 
+                </div>
+                <div class="countdown-separator">
+                    <span class="countdown-separator-timer">
+                        :
+                    </span>
+                    <span class="countdown-separator-label">
+                        &nbsp;
+                    </span>
+                </div>
+                <div class="countdown-minutes">
+                    <span class="countdown-minutes-timer">
+                        {{ nextLaunchMinutes }}
+                    </span>
+
+                    <span class="countdown-minutes-label" *ngIf="nextLaunchMinutes > 1; else noPlurialMinute">
+                        minutes
+                    </span>
+                    <ng-template #noPlurialMinute>
+                        <span class="countdown-minutes-label">
+                            minute
+                        </span>
+                    </ng-template> 
+                </div>
+                <div class="countdown-separator">
+                    <span class="countdown-separator-timer">
+                        :
+                    </span>
+                    <span class="countdown-separator-label">
+                        &nbsp;
+                    </span>
+                </div>
+                <div class="countdown-seconds">
+                    <span class="countdown-seconds-timer">
+                        {{ nextLaunchSeconds }}
+                    </span>
+
+                    <span class="countdown-seconds-label" *ngIf="nextLaunchSeconds > 1; else noPlurialSecond">
+                        seconds
+                    </span>
+                    <ng-template #noPlurialSecond>
+                        <span class="countdown-seconds-label">
+                            second
+                        </span>
+                    </ng-template> 
+                </div>
+            </div>
         </ion-item>
     </ion-list>
 
+    <div padding>
+        <ion-segment [(ngModel)]="typeLaunches">
+            <ion-segment-button value="upcoming">
+                Upcoming
+            </ion-segment-button>
+            <ion-segment-button value="past">
+                Past
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div [ngSwitch]="typeLaunches">
+        <ion-list *ngSwitchCase="'upcoming'">
+            <ion-list>
+                <ion-item *ngFor="let launch of upcomingLaunches">
+                    <ion-avatar item-start>
+                        <img src="{{ launch.links.mission_patch_small }}">
+                    </ion-avatar>
+                    <h2>{{ launch?.mission_name }}</h2>
+                    <p>{{ launch?.details }}</p>
+                    <p>{{ launch?.launch_date_utc }}</p>
+                </ion-item>
+            </ion-list>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'past'">
+            <ion-list>
+                <ion-item *ngFor="let launch of pastLaunches">
+                    <ion-avatar item-start>
+                        <img src="{{ launch.links.mission_patch_small }}">
+                    </ion-avatar>
+                    <h2>{{ launch?.mission_name }}</h2>
+                    <p>{{ launch?.details }}</p>
+                    <p>{{ launch?.launch_date_utc }}</p>
+                </ion-item>
+            </ion-list>
+        </ion-list>
+    </div>
 </ion-content>
     
