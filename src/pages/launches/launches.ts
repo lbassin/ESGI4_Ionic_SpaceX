@@ -1,11 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/interval';
-
-const counter = Observable.interval(1000);
-import { ApiService } from '../../providers/api.service';
-import { ILaunch } from '../../app/models/ILaunch';
+import { SpacexApiProvider } from './../../providers/spacex-api/spacex-api';
+import { ILaunch } from './../../app/models/ILaunch';
 
 @IonicPage()
 @Component({
@@ -13,6 +9,8 @@ import { ILaunch } from '../../app/models/ILaunch';
   templateUrl: 'launches.html',
 })
 export class LaunchesPage {
+
+    public endLoadingData: boolean = false;
 
     public typeLaunches: string = "upcoming";
 
@@ -25,7 +23,7 @@ export class LaunchesPage {
     public upcomingLaunches: ILaunch[] = [];
     public pastLaunches: ILaunch[] = [];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: ApiService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
 
         spacexApi.getAllLaunches().subscribe(data => {
             let reverseData = data.reverse();
@@ -47,23 +45,27 @@ export class LaunchesPage {
 
             let countdown = new Date();
 
+            countdown.setMonth(countdown.getMonth() + (new Date(this.nextLaunch.launch_date_utc).getMonth() - countdown.getMonth()))
             countdown.setDate(countdown.getDate() + (new Date(this.nextLaunch.launch_date_utc).getDate() - countdown.getDate()));
             countdown.setHours(countdown.getHours() + (new Date(this.nextLaunch.launch_date_utc).getHours() - countdown.getHours()));
             countdown.setMinutes(countdown.getMinutes() + (new Date(this.nextLaunch.launch_date_utc).getMinutes() - countdown.getMinutes()));
             countdown.setSeconds(countdown.getSeconds() + (new Date(this.nextLaunch.launch_date_utc).getSeconds() - countdown.getSeconds()));
 
-            counter.subscribe(() => {
+            this.amazingCountdownFunction(countdown);
+
+            this.endLoadingData = true;
+
+            setInterval(() => {
                 this.amazingCountdownFunction(countdown);
-            });
+            }, 1000);
         });
     }
 
     ionViewDidLoad() { }
 
     private amazingCountdownFunction(toDate) {
-        let dateEntered = toDate;
         let now = new Date();
-        let difference = dateEntered.getTime() - now.getTime();
+        let difference = toDate.getTime() - now.getTime();
 
         this.nextLaunchSeconds = Math.floor(difference / 1000);
         this.nextLaunchMinutes = Math.floor(this.nextLaunchSeconds / 60);
