@@ -38,6 +38,7 @@ export interface ILaunch {
     launch_date_unix: number;
     launch_date_utc: Date;
     launch_date_local: Date;
+    launch_date_formated: string;
     rocket: IRocket;
     telemetry: ITelemetry;
     reuse: IReuse;

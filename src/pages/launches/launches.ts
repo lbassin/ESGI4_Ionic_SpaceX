@@ -3,6 +3,10 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { SpacexApiProvider } from './../../providers/spacex-api/spacex-api';
 import { ILaunch } from './../../app/models/ILaunch';
 
+const monthNames = ["January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December"
+];
+
 @IonicPage()
 @Component({
   selector: 'page-launches',
@@ -29,6 +33,14 @@ export class LaunchesPage {
             let reverseData = data.reverse();
 
             reverseData.forEach(element => {
+                let elementDate = new Date(element.launch_date_utc);
+                element.launch_date_formated = elementDate.getDate() 
+                                                + ' ' + monthNames[elementDate.getMonth()] 
+                                                + ' ' + elementDate.getFullYear()
+                                                + ' ~ ' + ('0' + elementDate.getHours()).slice(-2)
+                                                + ':' + ('0' + elementDate.getMinutes()).slice(-2)
+                                                + ':' + ('0' + elementDate.getSeconds()).slice(-2);
+
                 if (element.launch_date_unix <= Math.round(+new Date() / 1000)) {
                     this.pastLaunches.push(element);
                 } else {
@@ -44,12 +56,13 @@ export class LaunchesPage {
             this.upcomingLaunches.shift();
 
             let countdown = new Date();
+            let nextLaunchDate = new Date(this.nextLaunch.launch_date_utc);
 
-            countdown.setMonth(countdown.getMonth() + (new Date(this.nextLaunch.launch_date_utc).getMonth() - countdown.getMonth()))
-            countdown.setDate(countdown.getDate() + (new Date(this.nextLaunch.launch_date_utc).getDate() - countdown.getDate()));
-            countdown.setHours(countdown.getHours() + (new Date(this.nextLaunch.launch_date_utc).getHours() - countdown.getHours()));
-            countdown.setMinutes(countdown.getMinutes() + (new Date(this.nextLaunch.launch_date_utc).getMinutes() - countdown.getMinutes()));
-            countdown.setSeconds(countdown.getSeconds() + (new Date(this.nextLaunch.launch_date_utc).getSeconds() - countdown.getSeconds()));
+            countdown.setMonth(countdown.getMonth() + (nextLaunchDate.getMonth() - countdown.getMonth()))
+            countdown.setDate(countdown.getDate() + (nextLaunchDate.getDate() - countdown.getDate()));
+            countdown.setHours(countdown.getHours() + (nextLaunchDate.getHours() - countdown.getHours()));
+            countdown.setMinutes(countdown.getMinutes() + (nextLaunchDate.getMinutes() - countdown.getMinutes()));
+            countdown.setSeconds(countdown.getSeconds() + (nextLaunchDate.getSeconds() - countdown.getSeconds()));
 
             this.amazingCountdownFunction(countdown);
 
