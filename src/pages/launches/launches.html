@@ -25,11 +25,16 @@
                 </span>
             </ion-item>
 
-            <ion-card-content>
-                <p>Wait a minute. Wait a minute, Doc. Uhhh... Are you telling me that you built a time machine... out of a DeLorean?! Whoa. This is heavy.</p>
+            <ion-card-content text-center class="ionic-next-launch-detail">
+                <p *ngIf="nextLaunch?.details; else noDesc">{{ nextLaunch?.details }}</p>
+                <ng-template #noDesc>
+                    <p>
+                        No description available
+                    </p>
+                </ng-template> 
             </ion-card-content>
 
-            <ion-row align-items-center text-center>
+            <ion-row align-items-center text-center class="ionic-countdown-fontsize">
                 <ion-col>
                     <div>{{ nextLaunchDays }}</div>
                 </ion-col>
