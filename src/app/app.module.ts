@@ -17,7 +17,7 @@ import { DataService } from '../providers/data.service';
   declarations: [
     MyApp,
     HomePage,
-    LaunchesPage,
+    LaunchesPage
   ],
   imports: [
     BrowserModule,

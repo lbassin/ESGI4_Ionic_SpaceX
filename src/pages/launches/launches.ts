@@ -33,6 +33,9 @@ export class LaunchesPage {
             let reverseData = data.reverse();
 
             reverseData.forEach(element => {
+                
+                console.log(element);
+
                 let elementDate = new Date(element.launch_date_utc);
                 element.launch_date_formated = elementDate.getDate()
                                                 + ' ' + monthNames[elementDate.getMonth()]
@@ -55,8 +58,6 @@ export class LaunchesPage {
             this.upcomingLaunches.reverse();
             this.nextLaunch = this.upcomingLaunches[0];
             this.upcomingLaunches.shift();
-
-            console.log(this.nextLaunch);
 
             let countdown = new Date();
             let nextLaunchDate = new Date(this.nextLaunch.launch_date_utc);
