@@ -25,35 +25,45 @@
                 </ng-template> 
             </ion-card-content>
 
-            <ion-row align-items-center text-center class="ionic-countdown-fontsize">
-                <ion-col>
-                    <div>{{ nextLaunchDays }}</div>
-                </ion-col>
-                <ion-col>
-                    <div>{{ nextLaunchHours }}</div>
-                </ion-col>
-                <ion-col>
-                    <div>{{ nextLaunchMinutes }}</div>
-                </ion-col>
-                <ion-col>
-                    <div>{{ nextLaunchSeconds }}</div>
-                </ion-col>
-            </ion-row>
-
-            <ion-row align-items-center text-center class="ionic-row-margin-bottom">
-                <ion-col>
-                    <div>days</div>
-                </ion-col>
-                <ion-col>
-                    <div>hours</div>
-                </ion-col>
-                <ion-col>
-                    <div>mins</div>
-                </ion-col>
-                <ion-col>
-                    <div>secs</div>
-                </ion-col>
-            </ion-row>
+            <span *ngIf="!nextLaunchIsLive; else liveNow">
+                <ion-row align-items-center text-center class="ionic-countdown-fontsize">
+                    <ion-col>
+                        <div>{{ nextLaunchDays }}</div>
+                    </ion-col>
+                    <ion-col>
+                        <div>{{ nextLaunchHours }}</div>
+                    </ion-col>
+                    <ion-col>
+                        <div>{{ nextLaunchMinutes }}</div>
+                    </ion-col>
+                    <ion-col>
+                        <div>{{ nextLaunchSeconds }}</div>
+                    </ion-col>
+                </ion-row>
+    
+                <ion-row align-items-center text-center class="ionic-row-margin-bottom">
+                    <ion-col>
+                        <div>days</div>
+                    </ion-col>
+                    <ion-col>
+                        <div>hours</div>
+                    </ion-col>
+                    <ion-col>
+                        <div>mins</div>
+                    </ion-col>
+                    <ion-col>
+                        <div>secs</div>
+                    </ion-col>
+                </ion-row>
+            </span>
+            <ng-template #liveNow>
+                <ion-row align-items-center>
+                    <button outline ion-button margin padding color="danger" class="ionic-live-button">
+                        Live now
+                        <span class="live-circle"></span>
+                    </button>
+                </ion-row>
+            </ng-template> 
         </ion-card>
     
         <div padding class="anim-type-launch">

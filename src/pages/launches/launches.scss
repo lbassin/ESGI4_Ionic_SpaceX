@@ -24,6 +24,30 @@ page-launches {
     .ionic-countdown-fontsize {
         font-size: 25px;
     }
+
+    .ionic-live-button {
+        width: 100%;
+
+        .live-circle {
+            width: 10px;
+            height: 11px;
+            background: rgb(255, 0, 0);
+            border-radius: 10px;
+            margin-left: 20px;
+            margin-top: 1px;
+            animation: pulseLive 1.2s infinite;
+        }
+    }
+
+    @keyframes pulseLive {
+        0% { }
+        70% {
+            box-shadow: 0 0 0 15px rgba(255, 0, 0, 0.12);
+        }
+        100% {
+            box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+        }
+    }
     
     .card-ios {
         margin: 12px;

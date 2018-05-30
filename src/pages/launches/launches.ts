@@ -23,6 +23,7 @@ export class LaunchesPage {
     public nextLaunchHours: number = 0;
     public nextLaunchMinutes: number = 0;
     public nextLaunchSeconds: number = 0;
+    public nextLaunchIsLive: boolean = false;
 
     public upcomingLaunches: ILaunch[] = [];
     public pastLaunches: ILaunch[] = [];
@@ -31,6 +32,9 @@ export class LaunchesPage {
 
         spacexApi.getAllLaunches().subscribe(data => {
             let reverseData = data.reverse();
+
+            // preview of a live launch
+            this.fakeLiveLaunch(reverseData);
 
             reverseData.forEach(element => {
                 let elementDate = new Date(element.launch_date_utc);
@@ -89,5 +93,81 @@ export class LaunchesPage {
         this.nextLaunchHours %= 24;
         this.nextLaunchMinutes %= 60;
         this.nextLaunchSeconds %= 60;
+
+        if (this.nextLaunchDays && this.nextLaunchHours && this.nextLaunchMinutes && this.nextLaunchSeconds <= 0) {
+            this.nextLaunchIsLive = true;
+        }
+    }
+
+    private fakeLiveLaunch(data) {
+        let newData = {};
+
+        let fakeLaunchDate = new Date();
+        fakeLaunchDate.setSeconds(fakeLaunchDate.getSeconds() + 10);
+
+        newData['details'] = 'Nasa sucks';
+        newData['flight_number'] = '999';
+        newData['launch_date_formated'] = "undefined";
+        newData['launch_date_local'] = "undefined";
+        newData['launch_date_unix'] = "undefined";
+        newData['launch_date_utc'] = fakeLaunchDate.toString();
+        newData['launch_site'] = {
+            'site_id': 'paris',
+            'site_name': 'Paris',
+            'site_name_long': 'Paris'
+        };
+        newData['launch_success'] = 'false';
+        newData['launch_year'] = (new Date()).getFullYear().toString();
+        newData['links'] = {
+            'article_link': null,
+            'mission_patch': null,
+            'mission_patch_small': "https://i.imgur.com/AZOQ5ZS.png",
+            'presskit': null,
+            'reddit_campaign': null,
+            'reddit_launch': null,
+            'reddit_media': null,
+            'reddit_recovery': null,
+            'video_link': null,
+            'wikipedia': null
+        };
+        newData['mission_name'] = "Elon loves space";
+        newData['reuse'] = {
+            'capsule': false,
+            'core': true,
+            'fairings': false,
+            'side_core1': false,
+            'side_core2': false
+        };
+        newData['rocket'] = {
+            'first_stage': {
+                'core': [{
+                    'block': null,
+                    'core_serial': null,
+                    'flight': null,
+                    'land_success': null,
+                    'landing_type': null,
+                    'landing_vehicle': null,
+                    'reused': null
+                }]
+            },
+            'rocket_id': 'falcon9',
+            'rocket_name': 'Falcon 9',
+            'rocket_type': 'FT',
+            'second_stage': {
+                'payloads': [{
+                    'customers': ['SES'],
+                    'orbit': 'GTO',
+                    'payload_id': 'SES-12',
+                    'payload_mass_kg': 5300,
+                    'payload_mass_lbs': null,
+                    'reused': false,
+                }]
+            },
+        };
+        newData['telemetry'] = {
+            'flight_club': null
+        };
+
+        data.push(newData);
     }
 }
