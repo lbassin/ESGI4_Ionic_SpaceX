@@ -1,31 +1,30 @@
-<ion-content>
-
-    <div *ngIf="endLoadingData; else loadingData">
-        <ion-card class="anim-next-launch">
-            <ion-item>
-                <ion-avatar item-start class="ionic-next-launch-avatar">
-                    <img src="{{ nextLaunch?.links.mission_patch_small }}">
-                </ion-avatar>
-                <h2>{{ nextLaunch?.mission_name }}</h2>
-                <p>{{nextLaunch?.launch_date_formated}}</p>
-                <span *ngIf="nextLaunch?.reuse.capsule || nextLaunch?.reuse.core || nextLaunch?.reuse.fairings || nextLaunch?.reuse.side_core1 || nextLaunch?.reuse.side_core2">
+<div *ngIf="endLoadingData; else loadingData">
+  <ion-card class="anim-next-launch">
+    <ion-item>
+      <ion-avatar item-start class="ionic-next-launch-avatar">
+        <img src="{{ nextLaunch?.links.mission_patch_small }}">
+      </ion-avatar>
+      <h2>{{ nextLaunch?.mission_name }}</h2>
+      <p>{{nextLaunch?.launch_date_formated}}</p>
+      <span
+        *ngIf="nextLaunch?.reuse.capsule || nextLaunch?.reuse.core || nextLaunch?.reuse.fairings || nextLaunch?.reuse.side_core1 || nextLaunch?.reuse.side_core2">
                     <ion-badge item-end class="ionic-next-launch-badge">Reused</ion-badge>
                 </span>
-                <span *ngIf="nextLaunch?.rocket.second_stage.payloads[0].orbit">
+      <span *ngIf="nextLaunch?.rocket.second_stage.payloads[0].orbit">
                     <ion-badge item-end class="ionic-next-launch-badge">Orbit : {{nextLaunch?.rocket.second_stage.payloads[0].orbit}}</ion-badge>
                 </span>
-            </ion-item>
+    </ion-item>
 
-            <ion-card-content text-center class="ionic-next-launch-detail">
-                <p *ngIf="nextLaunch?.details; else noDesc">{{ nextLaunch?.details }}</p>
-                <ng-template #noDesc>
-                    <p>
-                        No description available
-                    </p>
-                </ng-template> 
-            </ion-card-content>
+    <ion-card-content text-center class="ionic-next-launch-detail">
+      <p *ngIf="nextLaunch?.details; else noDesc">{{ nextLaunch?.details }}</p>
+      <ng-template #noDesc>
+        <p>
+          No description available
+        </p>
+      </ng-template>
+    </ion-card-content>
 
-            <span *ngIf="!nextLaunchIsLive; else liveNow">
+    <span *ngIf="!nextLaunchIsLive; else liveNow">
                 <ion-row align-items-center text-center class="ionic-countdown-fontsize">
                     <ion-col>
                         <div>{{ nextLaunchDays }}</div>
@@ -40,7 +39,7 @@
                         <div>{{ nextLaunchSeconds }}</div>
                     </ion-col>
                 </ion-row>
-    
+
                 <ion-row align-items-center text-center class="ionic-row-margin-bottom">
                     <ion-col>
                         <div>days</div>
@@ -56,77 +55,77 @@
                     </ion-col>
                 </ion-row>
             </span>
-            <ng-template #liveNow>
-                <ion-row align-items-center>
-                    <button outline ion-button margin padding color="danger" class="ionic-live-button">
-                        Live now
-                        <span class="live-circle"></span>
-                    </button>
-                </ion-row>
-            </ng-template> 
-        </ion-card>
-    
-        <div padding class="anim-type-launch">
-            <ion-segment [(ngModel)]="typeLaunches">
-                <ion-segment-button value="upcoming">
-                    Upcoming
-                </ion-segment-button>
-                <ion-segment-button value="past">
-                    Past
-                </ion-segment-button>
-            </ion-segment>
-        </div>
-    
-        <div [ngSwitch]="typeLaunches" class="anim-upcoming-launch">
-            <ion-list *ngSwitchCase="'upcoming'">
-                <ion-list>
-                    <ion-item *ngFor="let launch of upcomingLaunches">
-                        <ion-avatar item-start>
-                            <img src="{{ launch.links.mission_patch_small }}">
-                        </ion-avatar>
-                        <h2>{{ launch?.mission_name }}</h2>
-                        <p>{{ launch?.details }}</p>
-                        <p>{{ launch?.launch_date_formated }}</p>
-                        
-                        <span *ngIf="launch?.reuse.capsule || launch?.reuse.core || launch?.reuse.fairings || launch?.reuse.side_core1 || launch?.reuse.side_core2">
+    <ng-template #liveNow>
+      <ion-row align-items-center>
+        <button outline ion-button margin padding color="danger" class="ionic-live-button">
+          Live now
+          <span class="live-circle"></span>
+        </button>
+      </ion-row>
+    </ng-template>
+  </ion-card>
+
+  <div padding class="anim-type-launch">
+    <ion-segment [(ngModel)]="typeLaunches">
+      <ion-segment-button value="upcoming">
+        Upcoming
+      </ion-segment-button>
+      <ion-segment-button value="past">
+        Past
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+
+  <div [ngSwitch]="typeLaunches" class="anim-upcoming-launch">
+    <ion-list *ngSwitchCase="'upcoming'">
+      <ion-list>
+        <ion-item *ngFor="let launch of upcomingLaunches">
+          <ion-avatar item-start>
+            <img src="{{ launch.links.mission_patch_small }}">
+          </ion-avatar>
+          <h2>{{ launch?.mission_name }}</h2>
+          <p>{{ launch?.details }}</p>
+          <p>{{ launch?.launch_date_formated }}</p>
+
+          <span
+            *ngIf="launch?.reuse.capsule || launch?.reuse.core || launch?.reuse.fairings || launch?.reuse.side_core1 || launch?.reuse.side_core2">
                             <ion-badge no-margin color="primary">Reused</ion-badge>
                         </span>
-                        <span *ngIf="launch?.rocket.second_stage.payloads[0].orbit">
+          <span *ngIf="launch?.rocket.second_stage.payloads[0].orbit">
                             <ion-badge no-margin color="primary">Orbit : {{launch?.rocket.second_stage.payloads[0].orbit}}</ion-badge>
                         </span>
-                    </ion-item>
-                </ion-list>
-            </ion-list>
-    
-            <ion-list *ngSwitchCase="'past'">
-                <ion-list>
-                    <ion-item *ngFor="let launch of pastLaunches">
-                        <ion-avatar item-start>
-                            <img src="{{ launch.links.mission_patch_small }}">
-                        </ion-avatar>
-                        <h2>{{ launch?.mission_name }}</h2>
-                        <p>{{ launch?.details }}</p>
-                        <p>{{ launch?.launch_date_formated }}</p>
-    
-                        <span *ngIf="launch?.launch_success; else launchFailed">
+        </ion-item>
+      </ion-list>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'past'">
+      <ion-list>
+        <ion-item *ngFor="let launch of pastLaunches">
+          <ion-avatar item-start>
+            <img src="{{ launch.links.mission_patch_small }}">
+          </ion-avatar>
+          <h2>{{ launch?.mission_name }}</h2>
+          <p>{{ launch?.details }}</p>
+          <p>{{ launch?.launch_date_formated }}</p>
+
+          <span *ngIf="launch?.launch_success; else launchFailed">
                             <ion-badge no-margin color="secondary">Success</ion-badge>
                         </span>
-                        <ng-template #launchFailed>
-                            <ion-badge no-margin color="danger">Failed</ion-badge>
-                        </ng-template> 
-                        <span *ngIf="launch?.reuse.capsule || launch?.reuse.core || launch?.reuse.fairings || launch?.reuse.side_core1 || launch?.reuse.side_core2">
+          <ng-template #launchFailed>
+            <ion-badge no-margin color="danger">Failed</ion-badge>
+          </ng-template>
+          <span
+            *ngIf="launch?.reuse.capsule || launch?.reuse.core || launch?.reuse.fairings || launch?.reuse.side_core1 || launch?.reuse.side_core2">
                             <ion-badge no-margin color="primary">Reused</ion-badge>
                         </span>
-                        <span *ngIf="launch?.rocket.second_stage.payloads[0].orbit">
+          <span *ngIf="launch?.rocket.second_stage.payloads[0].orbit">
                             <ion-badge no-margin color="primary">Orbit : {{launch?.rocket.second_stage.payloads[0].orbit}}</ion-badge>
                         </span>
-                    </ion-item>
-                </ion-list>
-            </ion-list>
-        </div>
-    </div>
-    <ng-template #loadingData>
-        <span class="loader"></span>
-    </ng-template> 
-</ion-content>
-    
+        </ion-item>
+      </ion-list>
+    </ion-list>
+  </div>
+</div>
+<ng-template #loadingData>
+  <span class="loader"></span>
+</ng-template>
