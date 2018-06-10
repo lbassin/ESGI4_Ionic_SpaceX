@@ -19,17 +19,32 @@ export class ApiService {
     return this.http.get<ILaunch[]>(endPointUrl);
   }
 
+  public getNextLaunch(): Observable<ILaunch> {
+    const endPointUrl: string = this.baseUrl + 'launches/next';
+    return this.http.get<ILaunch>(endPointUrl);
+  }
+
+  public getPastLaunches(): Observable<ILaunch[]> {
+    const endPointUrl: string = this.baseUrl + 'launches';
+    return this.http.get<ILaunch[]>(endPointUrl);
+  }
+
+  public getUpcomingLaunches(): Observable<ILaunch[]> {
+    const endPointUrl: string = this.baseUrl + 'launches/upcoming';
+    return this.http.get<ILaunch[]>(endPointUrl);
+  }
+
   public getAllRockets(): Observable<IRocket[]> {
     const endPointUrl: string = this.baseUrl + 'rockets';
     return this.http.get<IRocket[]>(endPointUrl);
   }
 
-  getAllCapsules(): Observable<ICapsule[]> {
+  public getAllCapsules(): Observable<ICapsule[]> {
     const endPointUrl: string = this.baseUrl + 'capsules';
     return this.http.get<ICapsule[]>(endPointUrl);
   }
 
-  getAllLaunchpads(): Observable<ILaunchpad[]> {
+  public getAllLaunchpads(): Observable<ILaunchpad[]> {
     const endPointUrl: string = this.baseUrl + 'launchpads';
     return this.http.get<ILaunchpad[]>(endPointUrl);
   }

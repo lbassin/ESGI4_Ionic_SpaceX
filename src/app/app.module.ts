@@ -11,6 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiService } from '../providers/api.service';
 import { CacheService } from '../providers/cache.service';
+import { DataService } from '../providers/data.service';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { CacheService } from '../providers/cache.service';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiService,
     CacheService,
+    DataService,
   ]
 })
 export class AppModule {}

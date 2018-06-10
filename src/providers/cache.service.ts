@@ -8,53 +8,72 @@ export class CacheService {
   private prefix: string = 'spacex_';
   private timeSuffix: string = '_time';
 
-  private rocketsKey: string = 'rockets';
-  private capsulesKey: string = 'capsules';
-  private launchepadsKey: string = 'launchpads';
+  public static rocketsKey: string = 'rockets';
+  public static capsulesKey: string = 'capsules';
+  public static launchpadsKey: string = 'launchpads';
+  public static pastLaunchesKey: string = 'past_launches';
+  public static upcomingLaunchesKey: string = 'upcoming_launches';
 
-  constructor(private apiProvider: ApiService) {
+  constructor(private apiService: ApiService) {
   }
 
-  public set(key: string, data: any) {
+  public get(id: string): Observable<any> {
+    return new Observable<any>((observer) => {
+      if (this.needToRefresh(id)) {
+        observer.next(null);
+        observer.complete();
+        return;
+      }
 
+      const data = localStorage.getItem(this.prefix + id);
+      if (!data) {
+        observer.next(null);
+        observer.complete();
+        return;
+      }
+
+      observer.next(JSON.parse(data));
+      observer.complete();
+    });
   }
 
-  public get(key: string) {
+  public has(id: string) {
+    if (this.needToRefresh(id)) {
+      return false;
+    }
 
+    const data = localStorage.getItem(this.prefix + id);
+    return data !== null;
   }
 
   public generateAll(): void {
-    this.generateRockets();
-    this.generateCapsules();
-    this.generateLaunchpads();
-  }
+    const toCache: Array<{ key: string, data: Observable<any> }> = [
+      {key: CacheService.rocketsKey, data: this.apiService.getAllRockets()},
+      {key: CacheService.capsulesKey, data: this.apiService.getAllCapsules()},
+      {key: CacheService.launchpadsKey, data: this.apiService.getAllLaunchpads()},
+      {key: CacheService.pastLaunchesKey, data: this.apiService.getPastLaunches()},
+      {key: CacheService.upcomingLaunchesKey, data: this.apiService.getUpcomingLaunches()},
+    ];
 
-  private generateRockets(): void {
-    if (!this.needToRefresh(this.rocketsKey)) {
-      return;
-    }
+    toCache.forEach(element => {
+      if (!this.needToRefresh(element.key)) {
+        return;
+      }
 
-    this.saveApiData(this.apiProvider.getAllRockets(), this.rocketsKey);
-  }
-
-  private generateCapsules(): void {
-    if (!this.needToRefresh(this.capsulesKey)) {
-      return;
-    }
-
-    this.saveApiData(this.apiProvider.getAllCapsules(), this.capsulesKey);
-  }
-
-  private generateLaunchpads(): void {
-    if (!this.needToRefresh(this.launchepadsKey)) {
-      return;
-    }
-
-    this.saveApiData(this.apiProvider.getAllLaunchpads(), this.launchepadsKey);
+      this.saveApiData(element.data, element.key);
+    });
   }
 
   private needToRefresh(key: string): boolean {
-    return !localStorage.getItem(this.prefix + key);
+    const cacheKey: string = this.prefix + key;
+    const hasData: boolean = !localStorage.getItem(cacheKey);
+    if (!hasData) {
+      return false;
+    }
+
+    // const updatedAt: string = localStorage.getItem(cacheKey + this.timeSuffix);
+
+    return true;
   }
 
   private saveApiData(observable: Observable<any>, key: string): void {
@@ -63,5 +82,4 @@ export class CacheService {
       localStorage.setItem(this.prefix + key + this.timeSuffix, '');
     });
   }
-
 }
