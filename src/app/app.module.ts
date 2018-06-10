@@ -5,19 +5,18 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
-import { LaunchesPage } from './../pages/launches/launches';
+import { LaunchesPage } from '../pages/launches/launches';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
+import { ApiService } from '../providers/api.service';
+import { CacheService } from '../providers/cache.service';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    ListPage,
-    LaunchesPage
+    LaunchesPage,
   ],
   imports: [
     BrowserModule,
@@ -28,14 +27,14 @@ import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
   entryComponents: [
     MyApp,
     HomePage,
-    ListPage,
     LaunchesPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SpacexApiProvider
+    ApiService,
+    CacheService,
   ]
 })
 export class AppModule {}

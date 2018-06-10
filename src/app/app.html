@@ -1,18 +1,24 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-searchbar (ionInput)="updateSearchResults($event)"></ion-searchbar>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
     <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+      <ion-list-header>Rockets</ion-list-header>
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="https://dummyimage.com/240x240">
+        </ion-avatar>
+        <h2>Woody</h2>
+        <p>This town ain't big enough for the two of us!</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+
     </ion-list>
   </ion-content>
-
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
