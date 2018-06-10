@@ -7,6 +7,7 @@ export class CacheService {
 
   private prefix: string = 'spacex_';
   private timeSuffix: string = '_time';
+  private cacheLifetime: number = 7200000; // 2 Hours
 
   public static rocketsKey: string = 'rockets';
   public static capsulesKey: string = 'capsules';
@@ -66,20 +67,19 @@ export class CacheService {
 
   private needToRefresh(key: string): boolean {
     const cacheKey: string = this.prefix + key;
-    const hasData: boolean = !localStorage.getItem(cacheKey);
-    if (!hasData) {
-      return false;
+    const data: any = localStorage.getItem(cacheKey);
+    if (data === null) {
+      return true;
     }
 
-    // const updatedAt: string = localStorage.getItem(cacheKey + this.timeSuffix);
-
-    return true;
+    const updatedAt: number = parseInt(localStorage.getItem(cacheKey + this.timeSuffix), 10);
+    return Date.now() - updatedAt > this.cacheLifetime;
   }
 
   private saveApiData(observable: Observable<any>, key: string): void {
     observable.toPromise().then((data: any[]) => {
       localStorage.setItem(this.prefix + key, JSON.stringify(data));
-      localStorage.setItem(this.prefix + key + this.timeSuffix, '');
+      localStorage.setItem(this.prefix + key + this.timeSuffix, Date.now().toString());
     });
   }
 }
