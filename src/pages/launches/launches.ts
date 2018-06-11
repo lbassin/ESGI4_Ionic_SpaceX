@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SpacexApiProvider } from './../../providers/spacex-api/spacex-api';
-import { ILaunch } from './../../app/models/ILaunch';
+import { ApiService } from '../../providers/api.service';
+import { ILaunch } from '../../app/models/ILaunch';
 
 @IonicPage()
 @Component({
@@ -13,14 +13,11 @@ export class LaunchesPage {
     public nextLaunch: ILaunch;
     public launches: ILaunch[];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: ApiService) {
+
         spacexApi.getAllLaunches().subscribe(data => {
             this.nextLaunch = data[0];
             this.launches = data;
         });
-    }
-
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad LaunchesPage');
     }
 }
