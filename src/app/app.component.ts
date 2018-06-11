@@ -5,6 +5,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { CacheService } from '../providers/cache.service';
+import { SearchService } from '../providers/search.service';
+import { Subscription } from 'rxjs/Subscription';
+import { ISearchResult } from './models/ISearchResult';
 
 @Component({
   templateUrl: 'app.html'
@@ -16,10 +19,14 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
+  private searchSubscription: Subscription;
+  searchResult: ISearchResult;
+
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
-              public cacheService: CacheService) {
+              private cacheService: CacheService,
+              private searchService: SearchService) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -28,6 +35,8 @@ export class MyApp {
     ];
 
     this.cacheService.generateAll();
+    this.searchResult = {} as ISearchResult;
+    this.searchSubscription = this.searchService.getObservable().subscribe((searchResult: ISearchResult) => this.searchResult = searchResult);
   }
 
   initializeApp() {
@@ -46,6 +55,6 @@ export class MyApp {
   }
 
   updateSearchResults(event: any): void {
-    console.log(event.target.value);
+    this.searchService.updateResults(event.target.value);
   }
 }

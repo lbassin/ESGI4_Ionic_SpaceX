@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiService } from '../providers/api.service';
 import { CacheService } from '../providers/cache.service';
 import { DataService } from '../providers/data.service';
+import { SearchService } from '../providers/search.service';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { DataService } from '../providers/data.service';
     ApiService,
     CacheService,
     DataService,
+    SearchService,
   ]
 })
 export class AppModule {}
