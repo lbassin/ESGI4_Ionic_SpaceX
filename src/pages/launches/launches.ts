@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { SpacexApiProvider } from './../../providers/spacex-api/spacex-api';
-import { ILaunch } from './../../app/models/ILaunch';
+import { ILaunch } from '../../app/models/ILaunch';
+import { ApiService } from '../../providers/api.service';
 
 const monthNames = ["January", "February", "March", "April", "May", "June",
   "July", "August", "September", "October", "November", "December"
@@ -28,9 +28,9 @@ export class LaunchesPage {
     public upcomingLaunches: ILaunch[] = [];
     public pastLaunches: ILaunch[] = [];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private apiService: ApiService) {
 
-        spacexApi.getAllLaunches().subscribe(data => {
+        apiService.getAllLaunches().subscribe(data => {
             let reverseData = data.reverse();
 
             // preview of a live launch
