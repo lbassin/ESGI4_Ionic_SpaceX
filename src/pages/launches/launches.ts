@@ -24,15 +24,15 @@ export class LaunchesPage {
     public upcomingLaunches: ILaunch[] = [];
     public pastLaunches: ILaunch[] = [];
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, private dataService: DataService) {
+    constructor(private dataService: DataService) {
         
-        dataService.getNextLaunch().subscribe(data => {
+        dataService.getNextLaunch().subscribe((data: ILaunch) => {
             this.nextLaunch = data;
 
             let countdown = new Date();
             let nextLaunchDate = new Date(this.nextLaunch.launch_date_utc);
 
-            countdown.setMonth(countdown.getMonth() + (nextLaunchDate.getMonth() - countdown.getMonth()))
+            countdown.setMonth(countdown.getMonth() + (nextLaunchDate.getMonth() - countdown.getMonth()));
             countdown.setDate(countdown.getDate() + (nextLaunchDate.getDate() - countdown.getDate()));
             countdown.setHours(countdown.getHours() + (nextLaunchDate.getHours() - countdown.getHours()));
             countdown.setMinutes(countdown.getMinutes() + (nextLaunchDate.getMinutes() - countdown.getMinutes()));
@@ -45,12 +45,12 @@ export class LaunchesPage {
             }, 1000);
         });
 
-        dataService.getUpcomingLaunches().subscribe(data => {
+        dataService.getUpcomingLaunches().subscribe((data: ILaunch[]) => {
             data.shift();
             this.upcomingLaunches = data;
         });
 
-        dataService.getPastLaunches().subscribe(data => {
+        dataService.getPastLaunches().subscribe((data: ILaunch[]) => {
             this.pastLaunches = data.reverse();
             this.endLoadingData = true;
         });
@@ -58,7 +58,7 @@ export class LaunchesPage {
 
     ionViewDidLoad() { }
 
-    private amazingCountdownFunction(toDate) {
+    private amazingCountdownFunction(toDate: Date) {
         let now = new Date();
         let difference = toDate.getTime() - now.getTime();
 
