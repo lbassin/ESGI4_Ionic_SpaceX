@@ -2,10 +2,10 @@
   <ion-card class="anim-next-launch">
     <ion-item>
       <ion-avatar item-start class="ionic-next-launch-avatar">
-        <img src="{{ nextLaunch?.links.mission_patch_small }}">
+        <img src="{{ nextLaunch?.links.mission_patch_small | missionImage: {mission_name: launch?.mission_name} }}">
       </ion-avatar>
       <h2>{{ nextLaunch?.mission_name }}</h2>
-      <p>{{nextLaunch?.launch_date_formated}}</p>
+      <p>{{nextLaunch?.launch_date_utc | dateFormat }}</p>
       <span
         *ngIf="nextLaunch?.reuse.capsule || nextLaunch?.reuse.core || nextLaunch?.reuse.fairings || nextLaunch?.reuse.side_core1 || nextLaunch?.reuse.side_core2">
                     <ion-badge item-end class="ionic-next-launch-badge">Reused</ion-badge>
@@ -81,11 +81,11 @@
       <ion-list>
         <ion-item *ngFor="let launch of upcomingLaunches">
           <ion-avatar item-start>
-            <img src="{{ launch.links.mission_patch_small }}">
+            <img src="{{ launch.links.mission_patch_small | missionImage: {mission_name: launch?.mission_name} }}">
           </ion-avatar>
           <h2>{{ launch?.mission_name }}</h2>
           <p>{{ launch?.details }}</p>
-          <p>{{ launch?.launch_date_formated }}</p>
+          <p>{{ launch?.launch_date_utc | dateFormat }}</p>
 
           <span
             *ngIf="launch?.reuse.capsule || launch?.reuse.core || launch?.reuse.fairings || launch?.reuse.side_core1 || launch?.reuse.side_core2">
@@ -102,11 +102,11 @@
       <ion-list>
         <ion-item *ngFor="let launch of pastLaunches">
           <ion-avatar item-start>
-            <img src="{{ launch.links.mission_patch_small }}">
+            <img src="{{ launch.links.mission_patch_small | missionImage: {mission_name: launch?.mission_name} }}">
           </ion-avatar>
           <h2>{{ launch?.mission_name }}</h2>
           <p>{{ launch?.details }}</p>
-          <p>{{ launch?.launch_date_formated }}</p>
+          <p>{{ launch?.launch_date_utc | dateFormat }}</p>
 
           <span *ngIf="launch?.launch_success; else launchFailed">
                             <ion-badge no-margin color="secondary">Success</ion-badge>
