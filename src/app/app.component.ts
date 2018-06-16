@@ -34,9 +34,8 @@ export class MyApp {
       {title: 'Home', component: HomePage}
     ];
 
-    this.cacheService.generateAll();
-    this.searchResult = {} as ISearchResult;
-    this.searchSubscription = this.searchService.getObservable().subscribe((searchResult: ISearchResult) => this.searchResult = searchResult);
+    this.initCache();
+    this.initSearch();
   }
 
   initializeApp() {
@@ -46,6 +45,19 @@ export class MyApp {
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  initCache(): void {
+    this.cacheService.generateAll();
+  }
+
+  initSearch(): void {
+    this.searchResult = {} as ISearchResult;
+    this.searchSubscription = this.searchService.getObservable().subscribe((searchResult: ISearchResult) => {
+      this.searchResult = searchResult
+    });
+
+    this.searchService.updateResults(null);
   }
 
   openPage(page) {
