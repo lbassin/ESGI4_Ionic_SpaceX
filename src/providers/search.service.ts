@@ -41,8 +41,6 @@ export class SearchService {
       return;
     }
     this.searchResults(text);
-
-    this.subject.next(this.result);
   }
 
   private searchResults(text: string): void {
