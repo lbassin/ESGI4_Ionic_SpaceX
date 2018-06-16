@@ -12,6 +12,7 @@ export class CacheService {
   public static rocketsKey: string = 'rockets';
   public static capsulesKey: string = 'capsules';
   public static launchpadsKey: string = 'launchpads';
+  public static allLaunchesKey: string = 'all_launches';
   public static pastLaunchesKey: string = 'past_launches';
   public static upcomingLaunchesKey: string = 'upcoming_launches';
 
@@ -51,6 +52,7 @@ export class CacheService {
     const toCache: Array<{ key: string, data: Observable<any> }> = [
       {key: CacheService.rocketsKey, data: this.apiService.getAllRockets()},
       {key: CacheService.capsulesKey, data: this.apiService.getAllCapsules()},
+      {key: CacheService.allLaunchesKey, data: this.apiService.getAllLaunches()},
       {key: CacheService.launchpadsKey, data: this.apiService.getAllLaunchpads()},
       {key: CacheService.pastLaunchesKey, data: this.apiService.getPastLaunches()},
       {key: CacheService.upcomingLaunchesKey, data: this.apiService.getUpcomingLaunches()},
