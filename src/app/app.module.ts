@@ -9,6 +9,7 @@ import { LaunchesPage } from '../pages/launches/launches';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { MissionPage } from '../pages/mission/mission';
 import { ApiService } from '../providers/api.service';
 import { CacheService } from '../providers/cache.service';
 import { DataService } from '../providers/data.service';
@@ -20,6 +21,8 @@ import { MissionImage } from "../pipes/mission-image.pipe";
   declarations: [
     MyApp,
     HomePage,
+    LaunchesPage,
+    MissionPage,
     LaunchesPage,
     MissionImage,
     DateFormat
@@ -33,7 +36,8 @@ import { MissionImage } from "../pipes/mission-image.pipe";
   entryComponents: [
     MyApp,
     HomePage,
-    LaunchesPage
+    LaunchesPage,
+    MissionPage
   ],
   providers: [
     StatusBar,

@@ -4,15 +4,25 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
-import { CacheService } from '../providers/cache.service';
+import { ListPage } from '../pages/list/list';
+import { LaunchesPage } from './../pages/launches/launches';
+import { MissionPage } from '../pages/mission/mission';
 
 @Component({
-  templateUrl: 'app.html'
+  templateUrl: 'app.html',
+  template: `
+  <ion-tabs>
+    <ion-tab [root]="tab1" tabTitle="General"></ion-tab>
+    <ion-tab [root]="tab2" tabTitle="Rocket"></ion-tab>
+    <ion-tab [root]="tab2" tabTitle="Capsule"></ion-tab>
+  </ion-tabs>`
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any = HomePage;
+  tab1: any;
+  tab2: any;
 
   pages: Array<{ title: string, component: any }>;
 
@@ -22,9 +32,15 @@ export class MyApp {
               public cacheService: CacheService) {
     this.initializeApp();
 
+    this.tab1 = MissionPage;
+    this.tab2 = MissionPage;
+
     // used for an example of ngFor and navigation
     this.pages = [
-      {title: 'Home', component: HomePage}
+      { title: 'Home', component: HomePage },
+      { title: 'List', component: ListPage },
+      { title: 'Launches', component: LaunchesPage},
+      { title: 'Mission', component: MissionPage}
     ];
 
     this.cacheService.generateAll();
