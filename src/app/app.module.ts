@@ -4,7 +4,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
-import { HomePage } from '../pages/home/home';
 import { LaunchesPage } from '../pages/launches/launches';
 
 import { StatusBar } from '@ionic-native/status-bar';
@@ -16,16 +15,17 @@ import { DataService } from '../providers/data.service';
 
 import { DateFormat } from "../pipes/date-format.pipe";
 import { MissionImage } from "../pipes/mission-image.pipe";
+import { GeneralPage } from '../pages/mission/general/general';
 
 @NgModule({
   declarations: [
     MyApp,
-    HomePage,
     LaunchesPage,
     MissionPage,
     LaunchesPage,
     MissionImage,
-    DateFormat
+    DateFormat,
+    GeneralPage,
   ],
   imports: [
     BrowserModule,
@@ -35,9 +35,9 @@ import { MissionImage } from "../pipes/mission-image.pipe";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage,
     LaunchesPage,
-    MissionPage
+    MissionPage,
+    GeneralPage,
   ],
   providers: [
     StatusBar,
@@ -48,4 +48,5 @@ import { MissionImage } from "../pipes/mission-image.pipe";
     DataService
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
