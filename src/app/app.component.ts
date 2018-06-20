@@ -22,9 +22,9 @@ export class MyApp {
   private searchSubscription: Subscription;
   searchResult: ISearchResult;
 
-  constructor(public platform: Platform,
-              public statusBar: StatusBar,
-              public splashScreen: SplashScreen,
+  constructor(private platform: Platform,
+              private statusBar: StatusBar,
+              private splashScreen: SplashScreen,
               private cacheService: CacheService,
               private searchService: SearchService) {
     this.initializeApp();
@@ -33,9 +33,6 @@ export class MyApp {
     this.pages = [
       {title: 'Home', component: HomePage}
     ];
-
-    this.initCache();
-    this.initSearch();
   }
 
   initializeApp() {
@@ -43,6 +40,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
+      this.initCache();
+      this.initSearch();
       this.splashScreen.hide();
     });
   }
