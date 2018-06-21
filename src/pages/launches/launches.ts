@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController } from 'ionic-angular';
 import { ILaunch } from '../../app/models/ILaunch';
-import { DataService } from './../../providers/data.service';
+import { DataService } from '../../providers/data.service';
+import { MissionPage } from '../mission/mission';
 
 @IonicPage()
 @Component({
@@ -10,69 +11,73 @@ import { DataService } from './../../providers/data.service';
 })
 export class LaunchesPage {
 
-    public endLoadingData: boolean = false;
+  public endLoadingData: boolean = false;
 
-    public typeLaunches: string = "upcoming";
+  public typeLaunches: string = "upcoming";
 
-    public nextLaunch: ILaunch;
-    public nextLaunchDays: number = 0;
-    public nextLaunchHours: number = 0;
-    public nextLaunchMinutes: number = 0;
-    public nextLaunchSeconds: number = 0;
-    public nextLaunchIsLive: boolean = false;
+  public nextLaunch: ILaunch;
+  public nextLaunchDays: number = 0;
+  public nextLaunchHours: number = 0;
+  public nextLaunchMinutes: number = 0;
+  public nextLaunchSeconds: number = 0;
+  public nextLaunchIsLive: boolean = false;
 
-    public upcomingLaunches: ILaunch[] = [];
-    public pastLaunches: ILaunch[] = [];
+  public upcomingLaunches: ILaunch[] = [];
+  public pastLaunches: ILaunch[] = [];
 
-    constructor(private dataService: DataService) {
-        
-        dataService.getNextLaunch().subscribe((data: ILaunch) => {
-            this.nextLaunch = data;
+  constructor(private navCtrl: NavController, private dataService: DataService) {
 
-            let countdown = new Date();
-            let nextLaunchDate = new Date(this.nextLaunch.launch_date_utc);
+    dataService.getNextLaunch().subscribe((data: ILaunch) => {
+      this.nextLaunch = data;
 
-            countdown.setMonth(countdown.getMonth() + (nextLaunchDate.getMonth() - countdown.getMonth()));
-            countdown.setDate(countdown.getDate() + (nextLaunchDate.getDate() - countdown.getDate()));
-            countdown.setHours(countdown.getHours() + (nextLaunchDate.getHours() - countdown.getHours()));
-            countdown.setMinutes(countdown.getMinutes() + (nextLaunchDate.getMinutes() - countdown.getMinutes()));
-            countdown.setSeconds(countdown.getSeconds() + (nextLaunchDate.getSeconds() - countdown.getSeconds()));
+      let countdown = new Date();
+      let nextLaunchDate = new Date(this.nextLaunch.launch_date_utc);
 
-            this.amazingCountdownFunction(countdown);
+      countdown.setMonth(countdown.getMonth() + (nextLaunchDate.getMonth() - countdown.getMonth()));
+      countdown.setDate(countdown.getDate() + (nextLaunchDate.getDate() - countdown.getDate()));
+      countdown.setHours(countdown.getHours() + (nextLaunchDate.getHours() - countdown.getHours()));
+      countdown.setMinutes(countdown.getMinutes() + (nextLaunchDate.getMinutes() - countdown.getMinutes()));
+      countdown.setSeconds(countdown.getSeconds() + (nextLaunchDate.getSeconds() - countdown.getSeconds()));
 
-            setInterval(() => {
-                this.amazingCountdownFunction(countdown);
-            }, 1000);
-        });
+      this.amazingCountdownFunction(countdown);
 
-        dataService.getUpcomingLaunches().subscribe((data: ILaunch[]) => {
-            data.shift();
-            this.upcomingLaunches = data;
-        });
+      setInterval(() => {
+        this.amazingCountdownFunction(countdown);
+      }, 1000);
+    });
 
-        dataService.getPastLaunches().subscribe((data: ILaunch[]) => {
-            this.pastLaunches = data.reverse();
-            this.endLoadingData = true;
-        });
+    dataService.getUpcomingLaunches().subscribe((data: ILaunch[]) => {
+      data.shift();
+      this.upcomingLaunches = data;
+    });
+
+    dataService.getPastLaunches().subscribe((data: ILaunch[]) => {
+      this.pastLaunches = data.reverse();
+      this.endLoadingData = true;
+    });
+  }
+
+  private amazingCountdownFunction(toDate: Date) {
+    let now = new Date();
+    let difference = toDate.getTime() - now.getTime();
+
+    this.nextLaunchSeconds = Math.floor(difference / 1000);
+    this.nextLaunchMinutes = Math.floor(this.nextLaunchSeconds / 60);
+    this.nextLaunchHours = Math.floor(this.nextLaunchMinutes / 60);
+    this.nextLaunchDays = Math.floor(this.nextLaunchHours / 24);
+
+    this.nextLaunchHours %= 24;
+    this.nextLaunchMinutes %= 60;
+    this.nextLaunchSeconds %= 60;
+
+    if (this.nextLaunchDays && this.nextLaunchHours && this.nextLaunchMinutes && this.nextLaunchSeconds <= 0) {
+      this.nextLaunchIsLive = true;
     }
+  }
 
-    ionViewDidLoad() { }
-
-    private amazingCountdownFunction(toDate: Date) {
-        let now = new Date();
-        let difference = toDate.getTime() - now.getTime();
-
-        this.nextLaunchSeconds = Math.floor(difference / 1000);
-        this.nextLaunchMinutes = Math.floor(this.nextLaunchSeconds / 60);
-        this.nextLaunchHours = Math.floor(this.nextLaunchMinutes / 60);
-        this.nextLaunchDays = Math.floor(this.nextLaunchHours / 24);
-
-        this.nextLaunchHours %= 24;
-        this.nextLaunchMinutes %= 60;
-        this.nextLaunchSeconds %= 60;
-
-        if (this.nextLaunchDays && this.nextLaunchHours && this.nextLaunchMinutes && this.nextLaunchSeconds <= 0) {
-            this.nextLaunchIsLive = true;
-        }
-    }
+  goToLaunch(launch: ILaunch) {
+    this.navCtrl.push(MissionPage, {
+      launch: launch
+    });
+  }
 }
