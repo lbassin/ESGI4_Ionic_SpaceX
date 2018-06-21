@@ -29,6 +29,8 @@ export class MyApp {
               private cacheService: CacheService,
               private searchService: SearchService) {
     this.initializeApp();
+    this.initSearch();
+    this.initCache();
 
     this.pages = [
       {title: 'Launches', component: LaunchesPage},
@@ -39,8 +41,6 @@ export class MyApp {
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.initCache();
-      this.initSearch();
       this.splashScreen.hide();
     });
   }
