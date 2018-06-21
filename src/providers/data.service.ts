@@ -14,6 +14,10 @@ export class DataService {
   }
 
   public getAllLaunches(): Observable<ILaunch[]> {
+    if (this.cacheService.has(CacheService.allLaunchesKey)) {
+      return this.cacheService.get(CacheService.allLaunchesKey);
+    }
+
     return this.apiService.getAllLaunches();
   }
 

@@ -12,6 +12,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { ApiService } from '../providers/api.service';
 import { CacheService } from '../providers/cache.service';
 import { DataService } from '../providers/data.service';
+import { SearchService } from '../providers/search.service';
 
 import { DateFormat } from "../pipes/date-format.pipe";
 import { MissionImage } from "../pipes/mission-image.pipe";
@@ -41,7 +42,8 @@ import { MissionImage } from "../pipes/mission-image.pipe";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     ApiService,
     CacheService,
-    DataService
+    DataService,
+    SearchService,
   ]
 })
 export class AppModule {}

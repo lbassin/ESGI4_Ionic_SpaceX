@@ -6,18 +6,22 @@
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <ion-list-header>Rockets</ion-list-header>
-      <ion-item>
-        <ion-avatar item-start>
-          <img src="https://dummyimage.com/240x240">
-        </ion-avatar>
-        <h2>Woody</h2>
-        <p>This town ain't big enough for the two of us!</p>
-        <button ion-button clear item-end>View</button>
-      </ion-item>
-
+    <ion-list *ngIf="searchResult.groups?.length > 0">
+      <ng-container *ngFor="let group of searchResult.groups">
+        <ng-container *ngIf="group.data.length > 0">
+          <ion-list-header>{{ group.label }}</ion-list-header>
+          <ion-item *ngFor="let item of group.data">
+            <ion-avatar item-start>
+              <img [src]="item.image">
+            </ion-avatar>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.description }}</p>
+            <button ion-button clear item-end>View</button>
+          </ion-item>
+        </ng-container>
+      </ng-container>
     </ion-list>
+    <p *ngIf="searchResult.groups?.length <= 0" text-center>No data found</p>
   </ion-content>
 </ion-menu>
 
