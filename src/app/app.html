@@ -1,18 +1,28 @@
 <ion-menu [content]="content">
   <ion-header>
     <ion-toolbar>
-      <ion-title>Menu</ion-title>
+      <ion-searchbar (ionInput)="updateSearchResults($event)"></ion-searchbar>
     </ion-toolbar>
   </ion-header>
 
   <ion-content>
-    <ion-list>
-      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-        {{p.title}}
-      </button>
+    <ion-list *ngIf="searchResult.groups?.length > 0">
+      <ng-container *ngFor="let group of searchResult.groups">
+        <ng-container *ngIf="group.data.length > 0">
+          <ion-list-header>{{ group.label }}</ion-list-header>
+          <ion-item *ngFor="let item of group.data">
+            <ion-avatar item-start>
+              <img [src]="item.image">
+            </ion-avatar>
+            <h2>{{ item.title }}</h2>
+            <p>{{ item.description }}</p>
+            <button ion-button clear item-end>View</button>
+          </ion-item>
+        </ng-container>
+      </ng-container>
     </ion-list>
+    <p *ngIf="searchResult.groups?.length <= 0" text-center>No data found</p>
   </ion-content>
-
 </ion-menu>
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->

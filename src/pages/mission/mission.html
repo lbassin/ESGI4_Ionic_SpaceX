@@ -1,0 +1,17 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button icon-only menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>
+      {{ launch?.mission_name }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-tabs>
+  <ion-tab tabTitle="General" [root]="general" [rootParams]="launch"></ion-tab>
+  <ion-tab tabTitle="Rocket" [root]="general" [rootParams]="launch"></ion-tab>
+  <ion-tab tabTitle="Capsule" [root]="general" [rootParams]="launch"></ion-tab>
+</ion-tabs>
