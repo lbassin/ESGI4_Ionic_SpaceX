@@ -12,8 +12,8 @@
 
 <ion-content no-padding>
   <div *ngIf="endLoadingData; else loadingData">
-    <ion-card class="anim-next-launch">
-      <ion-item>
+    <ion-card class="anim-next-launch" (click)="goToLaunch(nextLaunch)">
+      <ion-item> 
         <ion-avatar item-start class="ionic-next-launch-avatar">
           <img src="{{ nextLaunch?.links.mission_patch_small | missionImage: {mission_name: launch?.mission_name} }}">
         </ion-avatar>
@@ -27,15 +27,6 @@
                     <ion-badge item-end class="ionic-next-launch-badge">Orbit : {{nextLaunch?.rocket.second_stage.payloads[0].orbit}}</ion-badge>
                 </span>
       </ion-item>
-
-      <ion-card-content text-center class="ionic-next-launch-detail">
-        <p *ngIf="nextLaunch?.details; else noDesc">{{ nextLaunch?.details }}</p>
-        <ng-template #noDesc>
-          <p>
-            No description available
-          </p>
-        </ng-template>
-      </ion-card-content>
 
       <span *ngIf="!nextLaunchIsLive; else liveNow">
                 <ion-row align-items-center text-center class="ionic-countdown-fontsize">
@@ -113,7 +104,7 @@
 
       <ion-list *ngSwitchCase="'past'">
         <ion-list>
-          <ion-item *ngFor="let launch of pastLaunches">
+          <ion-item *ngFor="let launch of pastLaunches" (click)="goToLaunch(launch)">
             <ion-avatar item-start>
               <img src="{{ launch.links.mission_patch_small | missionImage: {mission_name: launch?.mission_name} }}">
             </ion-avatar>

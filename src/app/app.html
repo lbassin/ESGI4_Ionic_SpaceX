@@ -6,7 +6,7 @@
   </ion-header>
 
   <ion-content>
-    <ion-list *ngIf="searchResult.groups?.length > 0">
+    <ion-list *ngIf="searchResult.groups?.length > 0" class="appear">
       <ng-container *ngFor="let group of searchResult.groups">
         <ng-container *ngIf="group.data.length > 0">
           <ion-list-header>{{ group.label }}</ion-list-header>

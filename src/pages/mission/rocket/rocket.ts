@@ -3,14 +3,13 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ILaunch } from '../../../app/models/ILaunch';
 
 @Component({
-  templateUrl: 'general.html',
+  templateUrl: 'rocket.html',
 })
-export class GeneralPage {
+export class RocketPage {
 
   launch: ILaunch;
 
   constructor(private navCtrl: NavController, private navParams: NavParams) {
-    this.launch = navParams.data;
-    console.log(this.launch)
+    this.launch = navParams.data
   }
 }

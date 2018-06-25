@@ -67,16 +67,16 @@ page-launches {
     }
     
     .anim-type-launch {
-        animation: appear 1s ease;
         opacity: 0;
-        animation-delay: .3s;
+        animation: appear .7s ease;
+        animation-delay: .1s;
         animation-fill-mode: forwards;
     }
     
     .anim-upcoming-launch {
-        animation: appear 1s ease;
         opacity: 0;
-        animation-delay: .6s;
+        animation: appear .7s ease;
+        animation-delay: .4s;
         animation-fill-mode: forwards;
     }
     
