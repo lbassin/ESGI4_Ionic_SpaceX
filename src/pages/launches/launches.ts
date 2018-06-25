@@ -3,6 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { ILaunch } from '../../app/models/ILaunch';
 import { DataService } from '../../providers/data.service';
 import { MissionPage } from '../mission/mission';
+import {InfosPage} from "../infos/infos";
 
 @IonicPage()
 @Component({
@@ -79,5 +80,8 @@ export class LaunchesPage {
     this.navCtrl.push(MissionPage, {
       launch: launch
     });
+  }
+  goToInfos( ) {
+    this.navCtrl.push(InfosPage);
   }
 }

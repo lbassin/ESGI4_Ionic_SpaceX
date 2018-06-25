@@ -62,6 +62,7 @@ import {InfosChartsPage} from "../pages/infos/infos-charts/infos-charts";
     CacheService,
     DataService,
     SearchService,
+    SpacexApiProvider
   ]
 })
 export class AppModule {
