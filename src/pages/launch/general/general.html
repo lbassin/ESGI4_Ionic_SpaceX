@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-navbar>
+  </ion-navbar>
+</ion-header>
+
+<ion-content no-padding class="card-background-page">
+    <ion-card class="appear-head">
+        <img src="https://i.pinimg.com/originals/92/45/45/924545a2721303f55fa004d579aaf756.jpg"/>
+        <img class="card-patch" src="{{ launch.links.mission_patch_small | missionImage: {mission_name: launch?.mission_name} }}">
+        <div class="card-title">{{ launch?.mission_name }}</div>
+        <div class="card-subtitle">{{ launch?.launch_date_utc | dateFormat }}</div>
+        <div class="card-site">{{ launch?.launch_site['site_name_long'] }}</div>
+    </ion-card>
+
+    <ion-card class="appear-content">
+        <ion-card-header>
+            Description
+        </ion-card-header>
+      
+        <ion-card-content text-center>
+            {{ launch?.details ? launch?.details : 'No description yet' }}
+        </ion-card-content>
+    </ion-card>
+
+    <ion-card class="appear-content">
+        <ion-card-header>
+            Miscellaneous
+        </ion-card-header>
+
+        <ion-grid>
+            <ion-row class="custom-row" *ngIf='launch?.launch_success != null'>
+                <ion-col col-6 text-left>
+                    Result
+                </ion-col>
+                <ion-col col-6 text-right>
+                    <ion-badge *ngIf='launch?.launch_success' color="secondary">Success</ion-badge>
+                    <ion-badge *ngIf='!launch?.launch_success' color="danger">Failed</ion-badge>
+                </ion-col>
+            </ion-row>
+            <ion-row class="custom-row">
+                <ion-col col-6 text-left>
+                        Orbit
+                </ion-col>
+                <ion-col col-6 text-right>
+                    <ion-badge color="primary">{{launch?.rocket.second_stage.payloads[0].orbit}}</ion-badge>
+                </ion-col>
+            </ion-row>
+            <ion-row class="custom-row">
+                <ion-col col-6 text-left>
+                    Reuse capsule
+                </ion-col>
+                <ion-col col-6 text-right>
+                    <ion-badge *ngIf='launch?.reuse.capsules' color="primary">Yes</ion-badge>
+                    <ion-badge *ngIf='!launch?.reuse.capsule' color="light">No</ion-badge>
+                </ion-col>
+            </ion-row>
+            <ion-row class="custom-row">
+                <ion-col col-6 text-left>
+                    Reuse core
+                </ion-col>
+                <ion-col col-6 text-right>
+                    <ion-badge *ngIf='launch?.reuse.core' color="primary">Yes</ion-badge>
+                    <ion-badge *ngIf='!launch?.reuse.core' color="light">No</ion-badge>
+                </ion-col>
+            </ion-row>
+            <ion-row class="custom-row">
+                <ion-col col-6 text-left>
+                    Reuse fairings
+                </ion-col>
+                <ion-col col-6 text-right>
+                    <ion-badge *ngIf='launch?.reuse.fairings' color="primary">Yes</ion-badge>
+                    <ion-badge *ngIf='!launch?.reuse.fairings' color="light">No</ion-badge>
+                </ion-col>
+            </ion-row>
+            <ion-row class="custom-row">
+                <ion-col col-6 text-left>
+                    Reuse side core 1
+                </ion-col>
+                <ion-col col-6 text-right>
+                    <ion-badge *ngIf='launch?.reuse.side_core1' color="primary">Yes</ion-badge>
+                    <ion-badge *ngIf='!launch?.reuse.side_core1' color="light">No</ion-badge>
+                </ion-col>
+            </ion-row>
+            <ion-row class="custom-row">
+                <ion-col col-6 text-left>
+                    Reuse side core 2
+                </ion-col>
+                <ion-col col-6 text-right>
+                    <ion-badge *ngIf='launch?.reuse.side_core2' color="primary">Yes</ion-badge>
+                    <ion-badge *ngIf='!launch?.reuse.side_core2' color="light">No</ion-badge>
+                </ion-col>
+            </ion-row>
+
+        </ion-grid>
+    </ion-card>
+
+</ion-content>
+

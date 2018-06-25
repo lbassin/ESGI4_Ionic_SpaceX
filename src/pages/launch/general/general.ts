@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { ILaunch } from '../../../app/models/ILaunch';
 
 @Component({
@@ -9,7 +9,7 @@ export class GeneralPage {
 
   launch: ILaunch;
 
-  constructor(private navParams: NavParams) {
-    this.launch = navParams.data
+  constructor(private navCtrl: NavController, private navParams: NavParams) {
+    this.launch = navParams.data;
   }
 }

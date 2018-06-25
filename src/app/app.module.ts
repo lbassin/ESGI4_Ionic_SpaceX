@@ -9,7 +9,7 @@ import { LaunchesPage } from '../pages/launches/launches';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MissionPage } from '../pages/mission/mission';
+import { LaunchPage } from '../pages/launch/launch';
 import { ApiService } from '../providers/api.service';
 import { CacheService } from '../providers/cache.service';
 import { DataService } from '../providers/data.service';
@@ -17,53 +17,68 @@ import { SearchService } from '../providers/search.service';
 
 import { DateFormat } from "../pipes/date-format.pipe";
 import { MissionImage } from "../pipes/mission-image.pipe";
-import { GeneralPage } from '../pages/mission/general/general';
-import { SpacexApiProvider } from '../providers/spacex-api/spacex-api';
-import {InfosPage} from "../pages/infos/infos";
-import {InfosSpaceXPage} from "../pages/infos/infos-space-x/infos-space-x";
-import {InfosChartsPage} from "../pages/infos/infos-charts/infos-charts";
+import { GeneralPage } from '../pages/launch/general/general';
+import { CapsulePage } from '../pages/capsule/capsule';
+import { LaunchpadPage } from '../pages/launchpad/launchpad';
+import { RocketPage } from '../pages/rocket/rocket';
+import { InfosPage } from "../pages/infos/infos";
+import { InfosSpaceXPage } from "../pages/infos/infos-space-x/infos-space-x";
+import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
+
+import { RocketComponent } from '../components/rocket/rocket.component';
+
+import { RocketPage as LaunchRocketPage } from '../pages/launch/rocket/rocket';
 
 @NgModule({
-  declarations: [
-    MyApp,
-    LaunchesPage,
-    MissionPage,
-    LaunchesPage,
-    MissionImage,
-    DateFormat,
-    GeneralPage,
-    InfosPage,
-    InfosSpaceXPage,
-    InfosChartsPage
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    IonicModule.forRoot(MyApp),
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyAXmTZR6BGKCYvV75pM77l1QaVEtpOdE1o'
-    })
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    LaunchesPage,
-    MissionPage,
-    GeneralPage,
-    InfosPage,
-    InfosChartsPage,
-    InfosSpaceXPage
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiService,
-    CacheService,
-    DataService,
-    SearchService,
-    SpacexApiProvider
-  ]
+    declarations: [
+        MyApp,
+        LaunchesPage,
+        LaunchesPage,
+        MissionImage,
+        DateFormat,
+        GeneralPage,
+        CapsulePage,
+        LaunchPage,
+        LaunchpadPage,
+        RocketPage,
+        RocketComponent,
+        LaunchRocketPage,
+        InfosPage,
+        InfosSpaceXPage,
+        InfosChartsPage
+
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        IonicModule.forRoot(MyApp),
+        AgmCoreModule.forRoot({
+            apiKey: 'AIzaSyAXmTZR6BGKCYvV75pM77l1QaVEtpOdE1o'
+        })
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        LaunchesPage,
+        GeneralPage,
+        CapsulePage,
+        LaunchPage,
+        LaunchpadPage,
+        RocketPage,
+        LaunchRocketPage,
+        InfosPage,
+        InfosChartsPage,
+        InfosSpaceXPage
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        ApiService,
+        CacheService,
+        DataService,
+        SearchService
+    ]
 })
 export class AppModule {
 }

@@ -1,0 +1,80 @@
+.card-background-page {
+    ion-card {
+        position: relative;
+        text-align: center;
+    }
+
+    .card-patch {
+        width: 45px;
+        top: 10%;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .card-title {
+        position: absolute;
+        top: 37%;
+        font-size: 2.0em;
+        width: 100%;
+         font-weight: bold;
+          color: #fff;
+    }
+
+    .card-subtitle {
+        font-size: 1.0em;
+        position: absolute;
+        top: 55%;
+        width: 100%;
+        color: #fff;
+    }
+
+    .card-site {
+        font-size: 1.0em;
+        position: absolute;
+        top: 75%;
+        width: 100%;
+        padding: 0 10px;
+        color: #fff;
+    }
+
+    .appear-head {
+        opacity: 0;
+        animation: appear .7s ease;
+        animation-delay: .1s;
+        animation-fill-mode: forwards;
+    }
+
+    .appear-content {
+        opacity: 0;
+        animation: appear .7s ease;
+        animation-delay: .4s;
+        animation-fill-mode: forwards;
+
+        .custom-row {
+            padding: 5px;
+
+            ion-col:nth-child(1) {
+                font-weight: bold;
+            }
+            ion-col:nth-child(2) {
+                color: #858588;
+            }
+
+            &:not(:last-child) {
+                border-bottom: 0.55px solid #c8c7cc;
+            }
+        }
+    }
+}
+
+@keyframes appear {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}

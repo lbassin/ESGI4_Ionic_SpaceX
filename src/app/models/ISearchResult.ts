@@ -11,5 +11,6 @@ export interface ISearchResultEntry {
   title: string,
   image: string,
   description: string,
-  route: string,
+  page: any,
+  data: any,
 }

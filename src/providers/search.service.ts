@@ -7,13 +7,23 @@ import { IRocket } from '../app/models/IRocket';
 import { ICapsule } from '../app/models/ICapsule';
 import { ILaunchpad } from '../app/models/ILaunchpad';
 import { ILaunch } from '../app/models/ILaunch';
+import { RocketPage } from '../pages/rocket/rocket';
+import { CapsulePage } from '../pages/capsule/capsule';
+import { LaunchpadPage } from '../pages/launchpad/launchpad';
+import { LaunchPage } from '../pages/launch/launch';
+
+interface ISearcher {
+  data: Observable<any>,
+  resultHandler: any,
+  page: any,
+}
 
 @Injectable()
 export class SearchService {
 
   private static readonly dummyImage: string = 'https://dummyimage.com/120x120';
 
-  private dataSource: Array<{ data: Observable<any>, resultHandler: any }>;
+  private dataSource: Array<{ data: Observable<any>, resultHandler: any, page: any }>;
   private subject: Subject<ISearchResult>;
   private result: ISearchResult;
 
@@ -22,10 +32,27 @@ export class SearchService {
     this.result = {groups: []} as ISearchResult;
 
     this.dataSource = [
-      {data: this.dataService.getAllRockets(), resultHandler: SearchService.addRocketToResults},
-      {data: this.dataService.getAllCapsules(), resultHandler: SearchService.addCapsuleToResults},
-      {data: this.dataService.getAllLaunchpads(), resultHandler: SearchService.addLaunchpadToResults},
-      {data: this.dataService.getAllLaunches(), resultHandler: SearchService.addLaunchToResults}
+      {
+        data: this.dataService.getAllRockets(),
+        resultHandler: SearchService.addRocketToResults,
+        page: RocketPage
+      },
+      {
+        data: this.dataService.getAllCapsules(),
+        resultHandler: SearchService.addCapsuleToResults,
+        page: CapsulePage
+      },
+      {
+        data: this.dataService.getAllLaunchpads(),
+        resultHandler: SearchService.addLaunchpadToResults,
+        page: LaunchpadPage
+      },
+      {
+        data: this.dataService.getAllLaunches(),
+        resultHandler: SearchService.addLaunchToResults,
+        page: LaunchPage
+
+      }
     ];
   }
 
@@ -44,7 +71,7 @@ export class SearchService {
   }
 
   private searchResults(text: string): void {
-    this.dataSource.forEach((elements: { data: Observable<any>, resultHandler: any }) => {
+    this.dataSource.forEach((elements: ISearcher) => {
       elements.data.subscribe((data: any) => {
         let results = {data: []} as ISearchResultGroup;
 
@@ -53,7 +80,7 @@ export class SearchService {
             return;
           }
 
-          results = elements.resultHandler(results, element);
+          results = elements.resultHandler(results, element, elements.page);
         });
 
         this.result.groups.push(results);
@@ -65,12 +92,12 @@ export class SearchService {
   private defaultResults(): void {
     const elementMaxCount = 3;
 
-    this.dataSource.forEach((elements: { data: Observable<any>, resultHandler: any }) => {
+    this.dataSource.forEach((elements: ISearcher) => {
       elements.data.subscribe((data: any) => {
         let results = {data: []} as ISearchResultGroup;
 
         data.slice(0, elementMaxCount).forEach((element: any) => {
-          results = elements.resultHandler(results, element);
+          results = elements.resultHandler(results, element, elements.page);
         });
 
         this.result.groups.push(results);
@@ -111,53 +138,61 @@ export class SearchService {
     return found;
   }
 
-  private static addRocketToResults(results: ISearchResultGroup, rocket: IRocket): ISearchResultGroup {
+  private static addRocketToResults(results: ISearchResultGroup, rocket: IRocket, page: any): ISearchResultGroup {
     results.label = results.label ? results.label : 'Rockets';
     results.data = results.data ? results.data : [];
 
     results.data.push({
       title: rocket.name,
       description: rocket.description,
-      image: SearchService.dummyImage
+      image: 'http://freedesignfile.com/upload/2017/08/rocket-icon-vector.png',
+      page: page,
+      data: rocket
     } as ISearchResultEntry);
 
     return results;
   }
 
-  private static addCapsuleToResults(results: ISearchResultGroup, capsule: ICapsule): ISearchResultGroup {
+  private static addCapsuleToResults(results: ISearchResultGroup, capsule: ICapsule, page: any): ISearchResultGroup {
     results.label = results.label ? results.label : 'Capsules';
     results.data = results.data ? results.data : [];
 
     results.data.push({
       title: capsule.name,
       description: '',
-      image: SearchService.dummyImage
+      image: SearchService.dummyImage,
+      page: page,
+      data: capsule
     } as ISearchResultEntry);
 
     return results;
   }
 
-  private static addLaunchpadToResults(results: ISearchResultGroup, launchpad: ILaunchpad): ISearchResultGroup {
+  private static addLaunchpadToResults(results: ISearchResultGroup, launchpad: ILaunchpad, page: any): ISearchResultGroup {
     results.label = results.label ? results.label : 'Launchpads';
     results.data = results.data ? results.data : [];
 
     results.data.push({
       title: launchpad.full_name,
       description: launchpad.details,
-      image: SearchService.dummyImage
+      image: SearchService.dummyImage,
+      page: page,
+      data: launchpad,
     } as ISearchResultEntry);
 
     return results;
   }
 
-  private static addLaunchToResults(results: ISearchResultGroup, launch: ILaunch): ISearchResultGroup {
+  private static addLaunchToResults(results: ISearchResultGroup, launch: ILaunch, page: any): ISearchResultGroup {
     results.label = results.label ? results.label : 'Launches';
     results.data = results.data ? results.data : [];
 
     results.data.push({
       title: launch.mission_name,
       description: launch.details,
-      image: launch.links.mission_patch_small ? launch.links.mission_patch_small : SearchService.dummyImage
+      image: launch.links.mission_patch_small ? launch.links.mission_patch_small : SearchService.dummyImage,
+      page: page,
+      data: launch
     } as ISearchResultEntry);
 
     return results;
