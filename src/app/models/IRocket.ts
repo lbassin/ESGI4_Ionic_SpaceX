@@ -1,4 +1,5 @@
 export interface IRocket {
+  rocket_id: string;
   id: string;
   name: string;
   type: string;

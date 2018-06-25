@@ -64,4 +64,23 @@ export class DataService {
 
     return this.apiService.getAllLaunchpads();
   }
+
+  public getRocketById(id: string): Observable<IRocket> {
+    if (this.cacheService.has(CacheService.rocketsKey)) {
+      return new Observable<IRocket>((observer) => {
+        this.cacheService.get(CacheService.rocketsKey).toPromise().then((rockets: IRocket[]) => {
+          const rocket = rockets.find((rocket: IRocket) => {
+            return rocket.id === id;
+          });
+
+          if (rocket) {
+            observer.next(rocket);
+          }
+          observer.complete()
+        });
+      });
+    }
+    
+    return this.apiService.getRocketById(id);
+  }
 }

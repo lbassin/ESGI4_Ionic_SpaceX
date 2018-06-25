@@ -22,8 +22,6 @@ import { LaunchpadPage } from '../pages/launchpad/launchpad';
 import { RocketPage } from '../pages/rocket/rocket';
 import { RocketComponent } from '../components/rocket/rocket.component';
 
-import { RocketPage as LaunchRocketPage } from '../pages/launch/rocket/rocket';
-
 @NgModule({
     declarations: [
         MyApp,
@@ -37,7 +35,6 @@ import { RocketPage as LaunchRocketPage } from '../pages/launch/rocket/rocket';
         LaunchpadPage,
         RocketPage,
         RocketComponent,
-        LaunchRocketPage,
     ],
     imports: [
         BrowserModule,
@@ -53,7 +50,6 @@ import { RocketPage as LaunchRocketPage } from '../pages/launch/rocket/rocket';
         LaunchPage,
         LaunchpadPage,
         RocketPage,
-        LaunchRocketPage,
     ],
     providers: [
         StatusBar,

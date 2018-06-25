@@ -2,7 +2,9 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams } from 'ionic-angular';
 import { ILaunch } from '../../app/models/ILaunch';
 import { GeneralPage } from './general/general';
-import { RocketPage } from './rocket/rocket';
+import { RocketPage } from '../rocket/rocket';
+import { DataService } from '../../providers/data.service';
+import { IRocket } from '../../app/models/IRocket';
 
 @IonicPage()
 @Component({
@@ -11,13 +13,20 @@ import { RocketPage } from './rocket/rocket';
 })
 export class LaunchPage {
 
-  launch: ILaunch;
-  general: any;
-  rocket: any;
+  generalPage: any;
+  rocketPage: any;
 
-  constructor(private navParams: NavParams) {
+  launch: ILaunch;
+  rocket: IRocket;
+
+  constructor(private navParams: NavParams, private dataService: DataService) {
     this.launch = navParams.get('data');
-    this.general = GeneralPage;
-    this.rocket = RocketPage;
+
+    this.dataService.getRocketById(this.launch.rocket.rocket_id).subscribe((rocket: IRocket) => {
+      this.rocket = rocket;
+    });
+
+    this.generalPage = GeneralPage;
+    this.rocketPage = RocketPage;
   }
 }
