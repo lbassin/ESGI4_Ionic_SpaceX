@@ -6,15 +6,15 @@ import { GeneralPage } from './general/general';
 @IonicPage()
 @Component({
   selector: 'page-mission',
-  templateUrl: 'mission.html',
+  templateUrl: 'launch.html',
 })
-export class MissionPage {
+export class LaunchPage {
 
   launch: ILaunch;
   general: any;
 
   constructor(private navParams: NavParams) {
-    this.launch = navParams.get('launch');
+    this.launch = navParams.get('data');
     this.general = GeneralPage;
   }
 }

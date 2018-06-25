@@ -8,7 +8,7 @@ import { LaunchesPage } from '../pages/launches/launches';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { MissionPage } from '../pages/mission/mission';
+import { LaunchPage } from '../pages/launch/launch';
 import { ApiService } from '../providers/api.service';
 import { CacheService } from '../providers/cache.service';
 import { DataService } from '../providers/data.service';
@@ -16,17 +16,23 @@ import { SearchService } from '../providers/search.service';
 
 import { DateFormat } from "../pipes/date-format.pipe";
 import { MissionImage } from "../pipes/mission-image.pipe";
-import { GeneralPage } from '../pages/mission/general/general';
+import { GeneralPage } from '../pages/launch/general/general';
+import { CapsulePage } from '../pages/capsule/capsule';
+import { LaunchpadPage } from '../pages/launchpad/launchpad';
+import { RocketPage } from '../pages/rocket/rocket';
 
 @NgModule({
   declarations: [
     MyApp,
     LaunchesPage,
-    MissionPage,
     LaunchesPage,
     MissionImage,
     DateFormat,
     GeneralPage,
+    CapsulePage,
+    LaunchPage,
+    LaunchpadPage,
+    RocketPage,
   ],
   imports: [
     BrowserModule,
@@ -37,8 +43,11 @@ import { GeneralPage } from '../pages/mission/general/general';
   entryComponents: [
     MyApp,
     LaunchesPage,
-    MissionPage,
     GeneralPage,
+    CapsulePage,
+    LaunchPage,
+    LaunchpadPage,
+    RocketPage,
   ],
   providers: [
     StatusBar,

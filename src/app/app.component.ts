@@ -4,7 +4,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { LaunchesPage } from '../pages/launches/launches';
-import { MissionPage } from '../pages/mission/mission';
+import { LaunchPage } from '../pages/launch/launch';
 import { CacheService } from '../providers/cache.service';
 import { SearchService } from '../providers/search.service';
 import { Subscription } from 'rxjs/Subscription';
@@ -34,7 +34,7 @@ export class MyApp {
 
     this.pages = [
       {title: 'Launches', component: LaunchesPage},
-      {title: 'Mission', component: MissionPage}
+      {title: 'Mission', component: LaunchPage}
     ];
   }
 
@@ -58,8 +58,8 @@ export class MyApp {
     this.searchService.updateResults(null);
   }
 
-  openPage(page) {
-    this.nav.setRoot(page.component);
+  openPage(element) {
+    this.nav.push(element.page, {data: element.data});
   }
 
   updateSearchResults(event: any): void {
