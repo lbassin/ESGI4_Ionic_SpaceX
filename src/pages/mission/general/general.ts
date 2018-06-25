@@ -10,6 +10,7 @@ export class GeneralPage {
   launch: ILaunch;
 
   constructor(private navCtrl: NavController, private navParams: NavParams) {
-    this.launch = navParams.data
+    this.launch = navParams.data;
+    console.log(this.launch)
   }
 }

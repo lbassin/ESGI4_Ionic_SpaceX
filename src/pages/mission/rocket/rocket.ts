@@ -3,9 +3,9 @@ import { NavController, NavParams } from 'ionic-angular';
 import { ILaunch } from '../../../app/models/ILaunch';
 
 @Component({
-  templateUrl: 'general.html',
+  templateUrl: 'rocket.html',
 })
-export class GeneralPage {
+export class RocketPage {
 
   launch: ILaunch;
 

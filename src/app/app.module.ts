@@ -17,6 +17,7 @@ import { SearchService } from '../providers/search.service';
 import { DateFormat } from "../pipes/date-format.pipe";
 import { MissionImage } from "../pipes/mission-image.pipe";
 import { GeneralPage } from '../pages/mission/general/general';
+import { RocketPage } from '../pages/mission/rocket/rocket';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { GeneralPage } from '../pages/mission/general/general';
     MissionImage,
     DateFormat,
     GeneralPage,
+    RocketPage
   ],
   imports: [
     BrowserModule,
@@ -39,6 +41,7 @@ import { GeneralPage } from '../pages/mission/general/general';
     LaunchesPage,
     MissionPage,
     GeneralPage,
+    RocketPage
   ],
   providers: [
     StatusBar,
@@ -47,7 +50,7 @@ import { GeneralPage } from '../pages/mission/general/general';
     ApiService,
     CacheService,
     DataService,
-    SearchService,
+    SearchService
   ]
 })
 export class AppModule {
