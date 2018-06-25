@@ -6,6 +6,7 @@ import { ICapsule } from '../app/models/ICapsule';
 import { ILaunch } from '../app/models/ILaunch';
 import { ApiService } from './api.service';
 import { CacheService } from './cache.service';
+import { ICompanyInfos } from '../app/models/ICompany';
 
 @Injectable()
 export class DataService {
@@ -80,7 +81,11 @@ export class DataService {
         });
       });
     }
-    
+
     return this.apiService.getRocketById(id);
+  }
+
+  public getCompanyInfos(): Observable<ICompanyInfos> {
+    return this.apiService.getCompanyInfos();
   }
 }

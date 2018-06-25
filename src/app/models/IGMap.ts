@@ -1,9 +1,9 @@
-interface IGMap {
+export interface IGMap {
   results: IResult[];
   status: string;
 }
 
-interface IResult {
+export interface IResult {
   address_components: IAddresscomponent[];
   formatted_address: string;
   geometry: IGeometry;
@@ -11,24 +11,24 @@ interface IResult {
   types: string[];
 }
 
-interface IGeometry {
+export interface IGeometry {
   bounds: IBounds;
   location: INortheast;
   location_type: string;
   viewport: IBounds;
 }
 
-interface IBounds {
+export interface IBounds {
   northeast: INortheast;
   southwest: INortheast;
 }
 
-interface INortheast {
+export interface INortheast {
   lat: number;
   lng: number;
 }
 
-interface IAddresscomponent {
+export interface IAddresscomponent {
   long_name: string;
   short_name: string;
   types: string[];

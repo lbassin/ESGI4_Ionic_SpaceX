@@ -7,7 +7,6 @@ import { LaunchesPage } from '../pages/launches/launches';
 import { LaunchPage } from '../pages/launch/launch';
 import { CacheService } from '../providers/cache.service';
 import { SearchService } from '../providers/search.service';
-import { Subscription } from 'rxjs/Subscription';
 import { ISearchResult } from './models/ISearchResult';
 
 import {InfosPage} from "../pages/infos/infos";
@@ -22,7 +21,6 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any }>;
 
-  private searchSubscription: Subscription;
   searchResult: ISearchResult;
 
   constructor(private platform: Platform,
@@ -54,7 +52,7 @@ export class MyApp {
 
   initSearch(): void {
     this.searchResult = {} as ISearchResult;
-    this.searchSubscription = this.searchService.getObservable().subscribe((searchResult: ISearchResult) => {
+    this.searchService.getObservable().subscribe((searchResult: ISearchResult) => {
       this.searchResult = searchResult
     });
 

@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavParams } from 'ionic-angular';
 import { ILaunch } from '../../../app/models/ILaunch';
 
 @Component({
-  templateUrl: 'general.html',
+    templateUrl: 'general.html',
 })
 export class GeneralPage {
 
-  launch: ILaunch;
+    launch: ILaunch;
 
-  constructor(private navCtrl: NavController, private navParams: NavParams) {
-    this.launch = navParams.data;
-  }
+    constructor(private navParams: NavParams) {
+        this.launch = this.navParams.data;
+    }
 }

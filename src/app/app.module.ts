@@ -25,56 +25,53 @@ import { InfosPage } from "../pages/infos/infos";
 import { InfosSpaceXPage } from "../pages/infos/infos-space-x/infos-space-x";
 import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
 
-import { RocketComponent } from '../components/rocket/rocket.component';
-
 @NgModule({
-    declarations: [
-        MyApp,
-        LaunchesPage,
-        LaunchesPage,
-        MissionImage,
-        DateFormat,
-        GeneralPage,
-        CapsulePage,
-        LaunchPage,
-        LaunchpadPage,
-        RocketPage,
-        RocketComponent,
-        InfosPage,
-        InfosSpaceXPage,
-        InfosChartsPage
+  declarations: [
+    MyApp,
+    LaunchesPage,
+    LaunchesPage,
+    MissionImage,
+    DateFormat,
+    GeneralPage,
+    CapsulePage,
+    LaunchPage,
+    LaunchpadPage,
+    RocketPage,
+    InfosPage,
+    InfosSpaceXPage,
+    InfosChartsPage
 
-    ],
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-        IonicModule.forRoot(MyApp),
-        AgmCoreModule.forRoot({
-            apiKey: 'AIzaSyAXmTZR6BGKCYvV75pM77l1QaVEtpOdE1o'
-        })
-    ],
-    bootstrap: [IonicApp],
-    entryComponents: [
-        MyApp,
-        LaunchesPage,
-        GeneralPage,
-        CapsulePage,
-        LaunchPage,
-        LaunchpadPage,
-        RocketPage,
-        InfosPage,
-        InfosChartsPage,
-        InfosSpaceXPage
-    ],
-    providers: [
-        StatusBar,
-        SplashScreen,
-        {provide: ErrorHandler, useClass: IonicErrorHandler},
-        ApiService,
-        CacheService,
-        DataService,
-        SearchService
-    ]
+  ],
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    IonicModule.forRoot(MyApp),
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyAXmTZR6BGKCYvV75pM77l1QaVEtpOdE1o'
+    })
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+    LaunchesPage,
+    GeneralPage,
+    CapsulePage,
+    LaunchPage,
+    LaunchpadPage,
+    RocketPage,
+    InfosPage,
+    InfosChartsPage,
+    InfosSpaceXPage
+  ],
+  providers: [
+    StatusBar,
+    SplashScreen,
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    ApiService,
+    CacheService,
+    DataService,
+    SearchService
+  ]
 })
 export class AppModule {
 }

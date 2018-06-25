@@ -1,4 +1,4 @@
-interface ICompanyInfos {
+export interface ICompanyInfos {
   name: string;
   founder: string;
   founded: number;
@@ -15,7 +15,7 @@ interface ICompanyInfos {
   summary: string;
 }
 
-interface ICompanyHeadquarters {
+export interface ICompanyHeadquarters {
   address: string;
   city: string;
   state: string;
