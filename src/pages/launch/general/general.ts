@@ -11,6 +11,5 @@ export class GeneralPage {
 
   constructor(private navCtrl: NavController, private navParams: NavParams) {
     this.launch = navParams.data;
-    console.log(this.launch)
   }
 }

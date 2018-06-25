@@ -80,7 +80,7 @@ export class LaunchesPage {
 
   goToLaunch(launch: ILaunch) {
     this.navCtrl.push(LaunchPage, {
-      launch: launch
+      data: launch
     });
   }
 }

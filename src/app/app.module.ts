@@ -22,44 +22,48 @@ import { LaunchpadPage } from '../pages/launchpad/launchpad';
 import { RocketPage } from '../pages/rocket/rocket';
 import { RocketComponent } from '../components/rocket/rocket.component';
 
+import { RocketPage as LaunchRocketPage } from '../pages/launch/rocket/rocket';
+
 @NgModule({
-  declarations: [
-    MyApp,
-    LaunchesPage,
-    LaunchesPage,
-    MissionImage,
-    DateFormat,
-    GeneralPage,
-    CapsulePage,
-    LaunchPage,
-    LaunchpadPage,
-    RocketPage,
-    RocketComponent
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    IonicModule.forRoot(MyApp)
-  ],
-  bootstrap: [IonicApp],
-  entryComponents: [
-    MyApp,
-    LaunchesPage,
-    GeneralPage,
-    CapsulePage,
-    LaunchPage,
-    LaunchpadPage,
-    RocketPage,
-  ],
-  providers: [
-    StatusBar,
-    SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler},
-    ApiService,
-    CacheService,
-    DataService,
-    SearchService
-  ]
+    declarations: [
+        MyApp,
+        LaunchesPage,
+        LaunchesPage,
+        MissionImage,
+        DateFormat,
+        GeneralPage,
+        CapsulePage,
+        LaunchPage,
+        LaunchpadPage,
+        RocketPage,
+        RocketComponent,
+        LaunchRocketPage,
+    ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        IonicModule.forRoot(MyApp)
+    ],
+    bootstrap: [IonicApp],
+    entryComponents: [
+        MyApp,
+        LaunchesPage,
+        GeneralPage,
+        CapsulePage,
+        LaunchPage,
+        LaunchpadPage,
+        RocketPage,
+        LaunchRocketPage,
+    ],
+    providers: [
+        StatusBar,
+        SplashScreen,
+        {provide: ErrorHandler, useClass: IonicErrorHandler},
+        ApiService,
+        CacheService,
+        DataService,
+        SearchService
+    ]
 })
 export class AppModule {
 }

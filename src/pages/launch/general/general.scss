@@ -5,20 +5,20 @@
     }
 
     .card-patch {
-        width: 45px; 
-        top: 10%; 
-        position: absolute; 
-        left: 50%; 
+        width: 45px;
+        top: 10%;
+        position: absolute;
+        left: 50%;
         transform: translateX(-50%);
     }
 
-    .card-title { 
-        position: absolute; 
-        top: 37%; 
-        font-size: 2.0em; 
+    .card-title {
+        position: absolute;
+        top: 37%;
+        font-size: 2.0em;
         width: 100%;
          font-weight: bold;
-          color: #fff; 
+          color: #fff;
     }
 
     .card-subtitle {
@@ -34,7 +34,7 @@
         position: absolute;
         top: 75%;
         width: 100%;
-        padding: 0px 10px;
+        padding: 0 10px;
         color: #fff;
     }
 
@@ -60,7 +60,7 @@
             ion-col:nth-child(2) {
                 color: #858588;
             }
-            
+
             &:not(:last-child) {
                 border-bottom: 0.55px solid #c8c7cc;
             }
