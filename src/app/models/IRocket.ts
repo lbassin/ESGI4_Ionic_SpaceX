@@ -23,6 +23,10 @@ export interface IRocket {
 
 export interface IFirstStage {
   cores: ICore[];
+  thrust_vacuum: IThrust;
+  thrust_sea_level: IThrust;
+  burn_time_sec: string;
+  fuel_amount_tons: string;
 }
 
 export interface ICore {
@@ -37,6 +41,9 @@ export interface ICore {
 
 export interface ISecondStage {
   payloads: IPayload[];
+  fuel_amount_tons: string;
+  burn_time_sec: string;
+  thrust: IThrust;
 }
 
 export interface IPayload {
@@ -79,12 +86,12 @@ export interface IEngines {
   engine_loss_max?: number;
   propellant_1: string;
   propellant_2: string;
-  thrust_sea_level: IThrustSeaLevel;
-  thrust_vacuum: IThrustSeaLevel;
+  thrust_sea_level: IThrust;
+  thrust_vacuum: IThrust;
   thrust_to_weight?: number;
 }
 
-export interface IThrustSeaLevel {
+export interface IThrust {
   kN: number;
   lbf: number;
 }

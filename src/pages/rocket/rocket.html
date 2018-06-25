@@ -1,18 +1,125 @@
-<!--
-  Generated template for the RocketPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
+k
 <ion-header>
 
   <ion-navbar>
-    <ion-title>RocketPage</ion-title>
+    <ion-title>{{ rocket.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-padding>
+  <ion-card>
+    <ion-item>
+      <ion-avatar item-start>
+        <img src="http://freedesignfile.com/upload/2017/08/rocket-icon-vector.png">
+      </ion-avatar>
+      <h2>{{ rocket.name }}</h2>
+      <p>{{ rocket.payload_weights[0]?.name }}</p>
+    </ion-item>
 
+    <ion-card-content text-center>
+      <p>{{ rocket.description}}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-card class="appear-content">
+    <ion-card-header text-center>
+      Miscellaneous
+    </ion-card-header>
+
+    <ion-grid>
+      <ion-row class="custom-row" *ngIf="rocket.cost_per_launch">
+        <ion-col col-6 text-left>Cost per launch</ion-col>
+        <ion-col col-6 text-right>{{ rocket.cost_per_launch }} $</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.success_rate_pct">
+        <ion-col col-6 text-left>Success rate</ion-col>
+        <ion-col col-6 text-right>{{ rocket.success_rate_pct }} %</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.first_flight">
+        <ion-col col-6 text-left>First flight</ion-col>
+        <ion-col col-6 text-right>{{ rocket.first_flight | date:'MM-d-yyyy' }}</ion-col>
+      </ion-row>
+      <ion-row class="custom-row">
+        <ion-col col-6 text-left>Still used</ion-col>
+        <ion-col col-6 text-right>{{ rocket.active ? 'Yes' : 'No' }}</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="appear-content">
+    <ion-card-header text-center>
+      Dimensions
+    </ion-card-header>
+
+    <ion-grid>
+      <ion-row class="custom-row" *ngIf="rocket.stages">
+        <ion-col col-6 text-left>Stages</ion-col>
+        <ion-col col-6 text-right>{{ rocket.stages }}</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.boosters">
+        <ion-col col-6 text-left>Boosters</ion-col>
+        <ion-col col-6 text-right>{{ rocket.boosters }}</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.height?.meters">
+        <ion-col col-6 text-left>Height</ion-col>
+        <ion-col col-6 text-right>{{ rocket.height?.meters }} M</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.diameter?.meters">
+        <ion-col col-6 text-left>Diameter</ion-col>
+        <ion-col col-6 text-right>{{ rocket.diameter?.meters }} M</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.mass?.kg">
+        <ion-col col-6 text-left>Mass</ion-col>
+        <ion-col col-6 text-right>{{ rocket.mass?.kg }} Kg</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="appear-content" *ngIf="rocket.first_stage">
+    <ion-card-header text-center>
+      First stage
+    </ion-card-header>
+
+    <ion-grid>
+      <ion-row class="custom-row" *ngIf="rocket.first_stage?.fuel_amount_tons">
+        <ion-col col-6 text-left>Fuel amount</ion-col>
+        <ion-col col-6 text-right>{{ rocket.first_stage?.fuel_amount_tons }} T</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.first_stage?.burn_time_sec">
+        <ion-col col-6 text-left>Burn time</ion-col>
+        <ion-col col-6 text-right>{{ rocket.first_stage?.burn_time_sec }} s</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.first_stage?.thrust_sea_level.kN">
+        <ion-col col-6 text-left>Sea level thrust</ion-col>
+        <ion-col col-6 text-right>{{ rocket.first_stage?.thrust_sea_level.kN }} Kn</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.first_stage?.thrust_vacuum.kN">
+        <ion-col col-6 text-left>Diameter</ion-col>
+        <ion-col col-6 text-right>{{ rocket.first_stage?.thrust_vacuum.kN }} kN</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
+
+  <ion-card class="appear-content" *ngIf="rocket.second_stage">
+    <ion-card-header text-center>
+      Second stage
+    </ion-card-header>
+
+    <ion-grid>
+      <ion-row class="custom-row" *ngIf="rocket.second_stage?.fuel_amount_tons">
+        <ion-col col-6 text-left>Fuel amount</ion-col>
+        <ion-col col-6 text-right>{{ rocket.second_stage?.fuel_amount_tons }} T</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.second_stage?.burn_time_sec">
+        <ion-col col-6 text-left>Burn time</ion-col>
+        <ion-col col-6 text-right>{{ rocket.second_stage?.burn_time_sec }} s</ion-col>
+      </ion-row>
+      <ion-row class="custom-row" *ngIf="rocket.second_stage?.thrust.kN">
+        <ion-col col-6 text-left>Thrust</ion-col>
+        <ion-col col-6 text-right>{{ rocket.second_stage?.thrust.kN }} kN</ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-card>
 </ion-content>

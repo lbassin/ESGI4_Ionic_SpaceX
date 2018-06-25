@@ -70,7 +70,10 @@ export class LaunchesPage {
     this.nextLaunchMinutes %= 60;
     this.nextLaunchSeconds %= 60;
 
-    if (this.nextLaunchDays && this.nextLaunchHours && this.nextLaunchMinutes && this.nextLaunchSeconds <= 0) {
+    if (this.nextLaunchDays <= 0 &&
+      this.nextLaunchHours <= 0 &&
+      this.nextLaunchMinutes <= 0 &&
+      this.nextLaunchSeconds <= 0) {
       this.nextLaunchIsLive = true;
     }
   }

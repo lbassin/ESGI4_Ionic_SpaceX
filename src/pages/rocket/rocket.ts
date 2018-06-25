@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
+import { IonicPage, NavParams } from 'ionic-angular';
+import { IRocket } from '../../app/models/IRocket';
 
 /**
  * Generated class for the RocketPage page.
@@ -15,7 +16,10 @@ import { IonicPage } from 'ionic-angular';
 })
 export class RocketPage {
 
-  constructor() {
+  rocket: IRocket;
+
+  constructor(private navParams: NavParams) {
+    this.rocket = this.navParams.get('data');
   }
 
 }

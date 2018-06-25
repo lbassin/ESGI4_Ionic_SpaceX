@@ -145,7 +145,7 @@ export class SearchService {
     results.data.push({
       title: rocket.name,
       description: rocket.description,
-      image: SearchService.dummyImage,
+      image: 'http://freedesignfile.com/upload/2017/08/rocket-icon-vector.png',
       page: page,
       data: rocket
     } as ISearchResultEntry);
