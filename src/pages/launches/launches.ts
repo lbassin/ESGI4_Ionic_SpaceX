@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController } from 'ionic-angular';
 import { ILaunch } from '../../app/models/ILaunch';
 import { DataService } from '../../providers/data.service';
-import { MissionPage } from '../mission/mission';
+import { LaunchPage } from '../launch/launch';
 
 @IonicPage()
 @Component({
@@ -70,13 +70,16 @@ export class LaunchesPage {
     this.nextLaunchMinutes %= 60;
     this.nextLaunchSeconds %= 60;
 
-    if (this.nextLaunchDays && this.nextLaunchHours && this.nextLaunchMinutes && this.nextLaunchSeconds <= 0) {
+    if (this.nextLaunchDays <= 0 &&
+      this.nextLaunchHours <= 0 &&
+      this.nextLaunchMinutes <= 0 &&
+      this.nextLaunchSeconds <= 0) {
       this.nextLaunchIsLive = true;
     }
   }
 
   goToLaunch(launch: ILaunch) {
-    this.navCtrl.push(MissionPage, {
+    this.navCtrl.push(LaunchPage, {
       launch: launch
     });
   }

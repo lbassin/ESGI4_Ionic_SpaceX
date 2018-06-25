@@ -16,7 +16,7 @@
             </ion-avatar>
             <h2>{{ item.title }}</h2>
             <p>{{ item.description }}</p>
-            <button ion-button clear item-end>View</button>
+            <button ion-button clear item-end menuToggle (click)="openPage(item)">View</button>
           </ion-item>
         </ng-container>
       </ng-container>

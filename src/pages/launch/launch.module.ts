@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { MissionPage } from './mission';
+import { LaunchPage } from './launch';
 import { GeneralPage } from './general/general';
 
 @NgModule({
   declarations: [
-    MissionPage,
+    LaunchPage,
     GeneralPage,
   ],
   imports: [
-    IonicPageModule.forChild(MissionPage),
+    IonicPageModule.forChild(LaunchPage),
   ],
 })
 export class MissionPageModule {}
