@@ -20,6 +20,7 @@ import { GeneralPage } from '../pages/launch/general/general';
 import { CapsulePage } from '../pages/capsule/capsule';
 import { LaunchpadPage } from '../pages/launchpad/launchpad';
 import { RocketPage } from '../pages/rocket/rocket';
+import { RocketComponent } from '../components/rocket/rocket.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { RocketPage } from '../pages/rocket/rocket';
     LaunchPage,
     LaunchpadPage,
     RocketPage,
+    RocketComponent
   ],
   imports: [
     BrowserModule,
