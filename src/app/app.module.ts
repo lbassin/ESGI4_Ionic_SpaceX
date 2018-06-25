@@ -27,8 +27,6 @@ import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
 
 import { RocketComponent } from '../components/rocket/rocket.component';
 
-import { RocketPage as LaunchRocketPage } from '../pages/launch/rocket/rocket';
-
 @NgModule({
     declarations: [
         MyApp,
@@ -42,7 +40,6 @@ import { RocketPage as LaunchRocketPage } from '../pages/launch/rocket/rocket';
         LaunchpadPage,
         RocketPage,
         RocketComponent,
-        LaunchRocketPage,
         InfosPage,
         InfosSpaceXPage,
         InfosChartsPage
@@ -65,7 +62,6 @@ import { RocketPage as LaunchRocketPage } from '../pages/launch/rocket/rocket';
         LaunchPage,
         LaunchpadPage,
         RocketPage,
-        LaunchRocketPage,
         InfosPage,
         InfosChartsPage,
         InfosSpaceXPage

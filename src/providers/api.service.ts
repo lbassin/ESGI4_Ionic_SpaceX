@@ -48,4 +48,9 @@ export class ApiService {
     const endPointUrl: string = this.baseUrl + 'launchpads';
     return this.http.get<ILaunchpad[]>(endPointUrl);
   }
+
+  public getRocketById(id: string): Observable<IRocket> {
+    const endPointUrl: string = this.baseUrl + 'rockets/' + id;
+    return this.http.get<IRocket>(endPointUrl);
+  }
 }
