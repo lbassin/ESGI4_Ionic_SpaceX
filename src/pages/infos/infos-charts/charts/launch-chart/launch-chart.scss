@@ -1,0 +1,17 @@
+page-launch-chart {
+  .launches-list{
+    margin-top: 30px;
+  }
+  h3{
+    margin: 0;
+    &.year{
+      font-size: 1.5rem;
+      box-sizing:border-box;
+      margin: 0 20px;
+      line-height: 1rem;
+      margin-bottom: 5px;
+      padding-bottom: 10px;
+      font-weight: 800;
+    }
+  }
+}

@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {LaunchChartPage} from "./charts/launch-chart/launch-chart";
+import {SafChartPage} from "./charts/saf-chart/saf-chart";
 
 /**
  * Generated class for the InfosChartsPage page.
@@ -15,7 +17,30 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class InfosChartsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  public datas = [
+    {
+      icon : 'main-icon/rocket.svg',
+      name: 'launches',
+      title: 'Launches by years',
+      page:  LaunchChartPage
+    },
+    {
+      icon : 'main-icon/rocket.svg',
+      name: 'saf',
+      title: 'Success and Fail',
+      page:  SafChartPage
+    }
+  ]
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private app: App) {
   }
 
+  moveToCharts(value:string) {
+
+    this.datas.forEach( data => {
+      if (value === data.name) {
+        this.app.getRootNav().push(data.page);
+      }
+    });
+  }
 }

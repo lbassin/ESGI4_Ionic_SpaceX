@@ -51,7 +51,7 @@ export class InfosSpaceXPage {
        * Récupération photo CEO / CTO [...] via api wikipedia
        */
       this.mediasPositions.forEach((position) => {
-        if (this.companyInfo[position].indexOf("Mueller") == -1) {
+        if (this.companyInfo[position].indexOf("Mueller") != -1) {
           this.medias[this.companyInfo[position]] = false;
           this.positions.push(position);
           return;
