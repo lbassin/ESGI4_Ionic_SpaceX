@@ -160,7 +160,7 @@ export class SearchService {
     results.data.push({
       title: capsule.name,
       description: '',
-      image: SearchService.dummyImage,
+      image: 'https://3dexport.com/items/2005/10/11/2697/147771/dragon_spacex_3d_model_vray_3ds_max_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_1694359_o.png',
       page: page,
       data: capsule
     } as ISearchResultEntry);
@@ -175,7 +175,7 @@ export class SearchService {
     results.data.push({
       title: launchpad.full_name,
       description: launchpad.details,
-      image: SearchService.dummyImage,
+      image: 'https://www.languagesim.com/wp-content/uploads/2014/07/simple-globe-md.png',
       page: page,
       data: launchpad,
     } as ISearchResultEntry);
