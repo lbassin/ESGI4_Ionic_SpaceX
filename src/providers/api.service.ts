@@ -55,6 +55,11 @@ export class ApiService {
     return this.http.get<IRocket>(endPointUrl);
   }
 
+  public getCapsuleById(id: string): Observable<ICapsule> {
+    const endPointUrl: string = this.baseUrl + 'capsules/' + id;
+    return this.http.get<ICapsule>(endPointUrl);
+  }
+
   public getCompanyInfos(): Observable<ICompanyInfos> {
     const endPointUrl: string = this.baseUrl + 'info';
     return this.http.get<ICompanyInfos>(endPointUrl);

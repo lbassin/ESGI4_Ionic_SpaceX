@@ -13,6 +13,8 @@ export class CapsulePage {
 
   constructor(private navParams: NavParams) {
     this.capsule = this.navParams.get('data');
+    console.log(this.capsule);
+    
   }
 
 }

@@ -14,3 +14,28 @@ page-rocket {
     }
   }
 }
+
+.appear-head {
+  opacity: 0;
+  animation: appear .7s ease;
+  animation-delay: .1s;
+  animation-fill-mode: forwards;
+}
+
+.appear-content {
+  opacity: 0;
+  animation: appear .7s ease;
+  animation-delay: .4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes appear {
+  0% {
+      opacity: 0;
+      transform: translateY(50px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0px);
+  }
+}

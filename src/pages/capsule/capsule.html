@@ -1,18 +1,213 @@
-<!--
-  Generated template for the CapsulePage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
 <ion-header>
 
   <ion-navbar>
-    <ion-title>CapsulePage</ion-title>
+    <ion-title>{{ capsule.name }}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  test
+<ion-content no-padding>
+
+  <ion-card class="appear-head">
+      <ion-card-header text-center>
+        General
+      </ion-card-header>
+  
+      <ion-grid>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Name</ion-col>
+          <ion-col col-6 text-right>{{ capsule.name }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Type</ion-col>
+          <ion-col col-6 text-right>{{ capsule.type }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+            <ion-col col-6 text-left>Still used</ion-col>
+            <ion-col col-6 text-right>
+              <ion-badge *ngIf="capsule.active" color="primary">Yes</ion-badge>
+              <ion-badge *ngIf="!capsule.active" color="light">No</ion-badge>
+            </ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Crew capacity</ion-col>
+          <ion-col col-6 text-right>{{ capsule.crew_capacity }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Sidewall angle deg</ion-col>
+          <ion-col col-6 text-right>{{ capsule.sidewall_angle_deg }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Orbit duration year</ion-col>
+          <ion-col col-6 text-right>{{ capsule.orbit_duration_yr }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Diameter meters</ion-col>
+          <ion-col col-6 text-right>{{ capsule.diameter['meters'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Diameter feet</ion-col>
+          <ion-col col-6 text-right>{{ capsule.diameter['feet'] }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card class="appear-content">
+      <ion-card-header text-center>
+        Pressurized capsule
+      </ion-card-header>
+  
+      <ion-grid>
+        <ion-row class="custom-row">
+          <ion-col col-9 text-left>Payload vol. cubic meters</ion-col>
+          <ion-col col-3 text-right>{{ capsule.pressurized_capsule['payload_volume']['cubic_meters'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-9 text-left>Payload vol. cubic feet</ion-col>
+          <ion-col col-3 text-right>{{ capsule.pressurized_capsule['payload_volume']['cubic_feet'] }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card class="appear-content">
+      <ion-card-header text-center>
+        Heat shield
+      </ion-card-header>
+  
+      <ion-grid>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Material</ion-col>
+          <ion-col col-6 text-right>{{ capsule.heat_shield['material'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Size meters</ion-col>
+          <ion-col col-6 text-right>{{ capsule.heat_shield['size_meters'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Temperature degrees</ion-col>
+          <ion-col col-6 text-right>{{ capsule.heat_shield['temp_degrees'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Dev. partner</ion-col>
+          <ion-col col-6 text-right>{{ capsule.heat_shield['dev_partner'] }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card class="appear-content">
+      <ion-card-header text-center>
+        Trunk
+      </ion-card-header>
+  
+      <ion-grid>
+        <ion-row class="custom-row">
+          <ion-col col-9 text-left>Trunk vol. cubic meters</ion-col>
+          <ion-col col-3 text-right>{{ capsule.trunk['trunk_volume']['cubic_meters'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Trunk vol. cubic feet</ion-col>
+          <ion-col col-6 text-right>{{ capsule.trunk['trunk_volume']['cubic_feet'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Cargo solar array</ion-col>
+          <ion-col col-6 text-right>{{ capsule.trunk['cargo']['solar_array'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-9 text-left>Cargo unpressurized cargo</ion-col>
+          <ion-col col-3 text-right>
+            <ion-badge *ngIf="capsule.trunk['cargo']['unpressurized_cargo']" color="primary">Yes</ion-badge>
+            <ion-badge *ngIf="!capsule.trunk['cargo']['unpressurized_cargo']" color="light">No</ion-badge>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card class="appear-content">
+      <ion-card-header text-center>
+        Thrusters
+      </ion-card-header>
+  
+      <ion-grid>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Type</ion-col>
+          <ion-col col-6 text-right>{{ capsule.thrusters[0]['type'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Amount</ion-col>
+          <ion-col col-6 text-right>{{ capsule.thrusters[0]['amount'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Pods</ion-col>
+          <ion-col col-6 text-right>{{ capsule.thrusters[0]['pods'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Fuel 1</ion-col>
+          <ion-col col-6 text-right>{{ capsule.thrusters[0]['fuel_1'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Fuel 2</ion-col>
+          <ion-col col-6 text-right>{{ capsule.thrusters[0]['fuel_2'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Thrust kN</ion-col>
+          <ion-col col-6 text-right>{{ capsule.thrusters[0]['thrust']['kN'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Thrust lbf</ion-col>
+          <ion-col col-6 text-right>{{ capsule.thrusters[0]['thrust']['lbf'] }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card class="appear-content">
+      <ion-card-header text-center>
+        Launch
+      </ion-card-header>
+  
+      <ion-grid>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Payload mass kg</ion-col>
+          <ion-col col-6 text-right>{{ capsule.launch_payload_mass['kg'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Payload mass lb</ion-col>
+          <ion-col col-6 text-right>{{ capsule.launch_payload_mass['lb'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-9 text-left>Payload vol. cubic meters</ion-col>
+          <ion-col col-3 text-right>{{ capsule.launch_payload_vol['cubic_meters'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-9 text-left>Payload vol. cubic feet</ion-col>
+          <ion-col col-3 text-right>{{ capsule.launch_payload_vol['cubic_feet'] }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
+    <ion-card class="appear-content">
+      <ion-card-header text-center>
+        Return
+      </ion-card-header>
+  
+      <ion-grid>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Payload mass kg</ion-col>
+          <ion-col col-6 text-right>{{ capsule.return_payload_mass['kg'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-6 text-left>Payload mass lb</ion-col>
+          <ion-col col-6 text-right>{{ capsule.return_payload_mass['lb'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-9 text-left>Payload vol. cubic meters</ion-col>
+          <ion-col col-3 text-right>{{ capsule.return_payload_vol['cubic_meters'] }}</ion-col>
+        </ion-row>
+        <ion-row class="custom-row">
+          <ion-col col-9 text-left>Payload vol. cubic feet</ion-col>
+          <ion-col col-3 text-right>{{ capsule.return_payload_vol['cubic_feet'] }}</ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+
 </ion-content>
