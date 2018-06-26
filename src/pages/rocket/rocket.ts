@@ -12,7 +12,7 @@ export class RocketPage {
   rocket: IRocket;
 
   constructor(private navParams: NavParams) {
-    this.rocket = this.navParams.get('data');
+    this.rocket = this.navParams.get('data') ? this.navParams.get('data') : this.navParams.data;
   }
 
 }

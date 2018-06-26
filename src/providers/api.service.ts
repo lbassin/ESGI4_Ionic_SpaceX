@@ -5,6 +5,7 @@ import { ILaunch } from '../app/models/ILaunch';
 import { ICapsule } from '../app/models/ICapsule';
 import { ILaunchpad } from '../app/models/ILaunchpad';
 import { IRocket } from '../app/models/IRocket';
+import { ICompanyInfos } from '../app/models/ICompany';
 
 @Injectable()
 export class ApiService {
@@ -47,5 +48,15 @@ export class ApiService {
   public getAllLaunchpads(): Observable<ILaunchpad[]> {
     const endPointUrl: string = this.baseUrl + 'launchpads';
     return this.http.get<ILaunchpad[]>(endPointUrl);
+  }
+
+  public getRocketById(id: string): Observable<IRocket> {
+    const endPointUrl: string = this.baseUrl + 'rockets/' + id;
+    return this.http.get<IRocket>(endPointUrl);
+  }
+
+  public getCompanyInfos(): Observable<ICompanyInfos> {
+    const endPointUrl: string = this.baseUrl + 'info';
+    return this.http.get<ICompanyInfos>(endPointUrl);
   }
 }

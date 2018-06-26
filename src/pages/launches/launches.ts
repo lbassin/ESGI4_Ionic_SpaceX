@@ -3,6 +3,7 @@ import { IonicPage, NavController } from 'ionic-angular';
 import { ILaunch } from '../../app/models/ILaunch';
 import { DataService } from '../../providers/data.service';
 import { LaunchPage } from '../launch/launch';
+import { InfosPage } from "../infos/infos";
 
 @IonicPage()
 @Component({
@@ -27,7 +28,7 @@ export class LaunchesPage {
 
   constructor(private navCtrl: NavController, private dataService: DataService) {
 
-    dataService.getNextLaunch().subscribe((data: ILaunch) => {
+    this.dataService.getNextLaunch().subscribe((data: ILaunch) => {
       this.nextLaunch = data;
 
       let countdown = new Date();
@@ -46,12 +47,12 @@ export class LaunchesPage {
       }, 1000);
     });
 
-    dataService.getUpcomingLaunches().subscribe((data: ILaunch[]) => {
+    this.dataService.getUpcomingLaunches().subscribe((data: ILaunch[]) => {
       data.shift();
       this.upcomingLaunches = data;
     });
 
-    dataService.getPastLaunches().subscribe((data: ILaunch[]) => {
+    this.dataService.getPastLaunches().subscribe((data: ILaunch[]) => {
       this.pastLaunches = data.reverse();
       this.endLoadingData = true;
     });
@@ -82,5 +83,8 @@ export class LaunchesPage {
     this.navCtrl.push(LaunchPage, {
       data: launch
     });
+  }
+  goToInfos( ) {
+    this.navCtrl.push(InfosPage);
   }
 }

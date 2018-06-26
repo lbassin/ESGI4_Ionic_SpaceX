@@ -1,0 +1,78 @@
+<ion-content padding="false">
+  <agm-map [latitude]="lat"
+           [longitude]="lng"
+           [mapTypeId]="mapType"
+           [zoom]="mapZoom"
+           [disableDefaultUI]="true"
+           [zoomControl]="false">
+  </agm-map>
+
+  <div class="infos-content">
+    <div *ngIf="companyInfo?.headquarters" class="company-block">
+      <div class="logo">
+        <img src="http://www.spacex.com/sites/all/themes/spacex2012/logo.png" alt="">
+      </div>
+      <address>
+        {{companyInfo.headquarters.address}}
+        <br>
+        {{companyInfo.headquarters.city}}, {{companyInfo.headquarters.state}}
+      </address>
+
+      <p class="summary">{{companyInfo.summary}}</p>
+    </div>
+
+    <div class="keys-data" *ngIf="companyInfo?.headquarters">
+      <h2>Keys data</h2>
+
+      <div class="data">
+        <h3 class="name">Founded in</h3>
+        <h4 class="value">{{companyInfo.founded}}</h4>
+      </div>
+
+      <div class="data">
+        <h4 class="value">{{companyInfo.employees}}</h4>
+        <h3 class="name">Employees</h3>
+      </div>
+
+      <div class="data">
+        <h4 class="value">{{companyInfo.test_sites}}</h4>
+        <h3 class="name">Test sites</h3>
+      </div>
+
+      <div class="data">
+        <h4 class="value">{{companyInfo.launch_sites}}</h4>
+        <h3 class="name">Launch sites</h3>
+      </div>
+      <div class="data">
+        <h4 class="value">{{companyInfo.vehicles}}</h4>
+        <h3 class="name">Vehicles</h3>
+      </div>
+
+
+      <div class="data">
+        <h4 class="value">{{companyInfo.valuation}} $</h4>
+        <h3 class="name">Business Valuation</h3>
+      </div>
+
+    </div>
+
+    <div class="positions-block">
+      <h2>Direction</h2>
+      <div *ngFor="let position of positions " class="positions">
+
+        <div class="medias">
+          <div *ngIf="medias[companyInfo[position]]">
+            <img [src]="medias[companyInfo[position]]" alt="">
+          </div>
+        </div>
+        <div class="infos">
+          <h3 class="title"> {{position.split('_').join(' ') | uppercase}}</h3>
+          <div *ngIf="companyInfo[position]">
+            <h3 [ngClass]="{'name':true , 'long' : companyInfo[position].length > 12}"> {{companyInfo[position]}}</h3>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ion-content>
