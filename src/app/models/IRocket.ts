@@ -28,6 +28,7 @@ export interface IFirstStage {
   thrust_sea_level: IThrust;
   burn_time_sec: string;
   fuel_amount_tons: string;
+  reusable: boolean;
 }
 
 export interface ICore {
