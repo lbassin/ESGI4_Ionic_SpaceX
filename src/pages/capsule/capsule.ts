@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { IonicPage } from 'ionic-angular';
-
-/**
- * Generated class for the CapsulePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavParams } from 'ionic-angular';
+import { ICapsule } from '../../app/models/ICapsule';
 
 @IonicPage()
 @Component({
@@ -15,7 +9,12 @@ import { IonicPage } from 'ionic-angular';
 })
 export class CapsulePage {
 
-  constructor() {
+  capsule: ICapsule;
+
+  constructor(private navParams: NavParams) {
+    this.capsule = this.navParams.get('data');
+    console.log(this.capsule);
+    
   }
 
 }

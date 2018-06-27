@@ -1,5 +1,5 @@
 <ion-content padding="false">
-  <agm-map [latitude]="lat"
+  <agm-map class="appear-head" [latitude]="lat"
            [longitude]="lng"
            [mapTypeId]="mapType"
            [zoom]="mapZoom"
@@ -8,7 +8,7 @@
   </agm-map>
 
   <div class="infos-content">
-    <div *ngIf="companyInfo?.headquarters" class="company-block">
+    <div *ngIf="companyInfo?.headquarters" class="company-block appear-head">
       <div class="logo">
         <img src="http://www.spacex.com/sites/all/themes/spacex2012/logo.png" alt="">
       </div>
@@ -21,7 +21,7 @@
       <p class="summary">{{companyInfo.summary}}</p>
     </div>
 
-    <div class="keys-data" *ngIf="companyInfo?.headquarters">
+    <div class="keys-data appear-content" *ngIf="companyInfo?.headquarters">
       <h2>Keys data</h2>
 
       <div class="data">
