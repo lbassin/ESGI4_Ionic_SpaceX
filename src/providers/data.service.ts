@@ -85,25 +85,6 @@ export class DataService {
     return this.apiService.getRocketById(id);
   }
 
-  public getCapsuleById(id: string): Observable<ICapsule> {
-    if (this.cacheService.has(CacheService.capsulesKey)) {
-      return new Observable<ICapsule>((observer) => {
-        this.cacheService.get(CacheService.capsulesKey).toPromise().then((capsules: ICapsule[]) => {
-          const capsule = capsules.find((capsule: ICapsule) => {
-            return capsule.id === id;
-          });
-
-          if (capsule) {
-            observer.next(capsule);
-          }
-          observer.complete()
-        });
-      });
-    }
-
-    return this.apiService.getCapsuleById(id);
-  }
-
   public getCompanyInfos(): Observable<ICompanyInfos> {
     return this.apiService.getCompanyInfos();
   }
