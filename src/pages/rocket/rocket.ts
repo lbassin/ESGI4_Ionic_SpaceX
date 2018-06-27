@@ -14,5 +14,4 @@ export class RocketPage {
   constructor(private navParams: NavParams) {
     this.rocket = this.navParams.get('data') ? this.navParams.get('data') : this.navParams.data;
   }
-
 }
