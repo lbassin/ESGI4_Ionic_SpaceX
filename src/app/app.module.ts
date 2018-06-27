@@ -3,6 +3,7 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AgmCoreModule } from '@agm/core';
+import { ChartsModule } from "ng2-charts";
 
 import { MyApp } from './app.component';
 import { LaunchesPage } from '../pages/launches/launches';
@@ -24,6 +25,10 @@ import { RocketPage } from '../pages/rocket/rocket';
 import { InfosPage } from "../pages/infos/infos";
 import { InfosSpaceXPage } from "../pages/infos/infos-space-x/infos-space-x";
 import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
+import {LaunchChartPage} from "../pages/infos/infos-charts/charts/launch-chart/launch-chart";
+import {SafChartPage} from "../pages/infos/infos-charts/charts/saf-chart/saf-chart";
+import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
+
 
 @NgModule({
   declarations: [
@@ -39,7 +44,10 @@ import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
     RocketPage,
     InfosPage,
     InfosSpaceXPage,
-    InfosChartsPage
+    InfosChartsPage,
+    LaunchChartPage,
+    SafChartPage,
+    FirstStageChartPage,
 
   ],
   imports: [
@@ -48,7 +56,8 @@ import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
     IonicModule.forRoot(MyApp),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyAXmTZR6BGKCYvV75pM77l1QaVEtpOdE1o'
-    })
+    }),
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -61,7 +70,10 @@ import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
     RocketPage,
     InfosPage,
     InfosChartsPage,
-    InfosSpaceXPage
+    InfosSpaceXPage,
+    LaunchChartPage,
+    SafChartPage,
+    FirstStageChartPage
   ],
   providers: [
     StatusBar,
