@@ -1,0 +1,18 @@
+page-first-stage-chart {
+  h3{
+    margin: 0;
+    &.year{
+      font-size: 1.5rem;
+      box-sizing:border-box;
+      margin: 20px;
+      line-height: 1rem;
+      margin-bottom: 5px;
+      padding-bottom: 10px;
+      font-weight: 800;
+      &:first-of-type{
+        margin-top: 50px;
+      }
+    }
+  }
+
+}
