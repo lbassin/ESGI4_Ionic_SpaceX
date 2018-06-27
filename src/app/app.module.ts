@@ -27,6 +27,7 @@ import { InfosSpaceXPage } from "../pages/infos/infos-space-x/infos-space-x";
 import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
 import {LaunchChartPage} from "../pages/infos/infos-charts/charts/launch-chart/launch-chart";
 import {SafChartPage} from "../pages/infos/infos-charts/charts/saf-chart/saf-chart";
+import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
 
 
 @NgModule({
@@ -45,7 +46,8 @@ import {SafChartPage} from "../pages/infos/infos-charts/charts/saf-chart/saf-cha
     InfosSpaceXPage,
     InfosChartsPage,
     LaunchChartPage,
-    SafChartPage
+    SafChartPage,
+    FirstStageChartPage,
 
   ],
   imports: [
@@ -70,7 +72,8 @@ import {SafChartPage} from "../pages/infos/infos-charts/charts/saf-chart/saf-cha
     InfosChartsPage,
     InfosSpaceXPage,
     LaunchChartPage,
-    SafChartPage
+    SafChartPage,
+    FirstStageChartPage
   ],
   providers: [
     StatusBar,

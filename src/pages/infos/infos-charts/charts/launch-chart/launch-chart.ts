@@ -22,6 +22,7 @@ export class LaunchChartPage {
   public barChartLabels:string[] = [];
   public barChartType:string = 'bar';
   public barChartLegend:boolean = true;
+  public title: string;
 
   public barChartData:any[] = [
 
@@ -39,7 +40,7 @@ export class LaunchChartPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataservice : DataService) {
-
+    this.title = this.navParams.get('title');
     this.dataservice.getAllLaunches().subscribe(data => {
       let chartData = {data : [], labels: "launches"};
       data.forEach( launch => {

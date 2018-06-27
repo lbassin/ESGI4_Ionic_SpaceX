@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {App, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {LaunchChartPage} from "./charts/launch-chart/launch-chart";
 import {SafChartPage} from "./charts/saf-chart/saf-chart";
+import {FirstStageChartPage} from "./charts/first-stage-chart/first-stage-chart";
 
 /**
  * Generated class for the InfosChartsPage page.
@@ -29,6 +30,12 @@ export class InfosChartsPage {
       name: 'saf',
       title: 'Success and Fail',
       page:  SafChartPage
+    },
+    {
+      icon : 'main-icon/rocket.svg',
+      name: 'rrfs',
+      title: 'Rockets with reusable first stage',
+      page:  FirstStageChartPage
     }
   ]
 
@@ -39,7 +46,10 @@ export class InfosChartsPage {
 
     this.datas.forEach( data => {
       if (value === data.name) {
-        this.app.getRootNav().push(data.page);
+        console.log(data.title);
+        this.app.getRootNav().push(data.page, {
+          title : data.title
+        });
       }
     });
   }

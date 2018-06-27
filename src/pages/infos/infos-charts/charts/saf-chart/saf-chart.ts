@@ -20,6 +20,7 @@ export class SafChartPage {
   public successList = [];
   public failsList = [];
   public chartType: string = 'doughnut';
+  public title: string;
 
   // events
   public chartClicked(e:any):void {
@@ -31,6 +32,7 @@ export class SafChartPage {
   }
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private dataservice: DataService) {
+    this.title = this.navParams.get('title');
     this.dataservice.getAllLaunches().subscribe(data => {
       data.forEach( launch => {
         if(!launch.launch_success){
