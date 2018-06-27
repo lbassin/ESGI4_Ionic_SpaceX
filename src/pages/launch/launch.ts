@@ -24,7 +24,9 @@ export class LaunchPage {
   capsule: ICapsule;
 
   constructor(private navParams: NavParams, private dataService: DataService) {
-    this.launch = this.navParams.get('data');    
+    this.launch = this.navParams.get('data');
+
+    console.log(this.launch);
 
     this.dataService.getRocketById(this.launch.rocket.rocket_id).subscribe((rocket: IRocket) => {
       this.rocket = rocket;
