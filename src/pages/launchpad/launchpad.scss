@@ -1,3 +1,45 @@
 page-launchpad {
+  .custom-row {
+    padding: 5px;
 
+    ion-col:nth-child(1) {
+      font-weight: bold;
+    }
+    ion-col:nth-child(2) {
+      color: #858588;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 0.55px solid #c8c7cc;
+    }
+  }
+}
+
+.appear-head {
+  opacity: 0;
+  animation: appear .7s ease;
+  animation-delay: .1s;
+  animation-fill-mode: forwards;
+}
+
+.appear-content {
+  opacity: 0;
+  animation: appear .7s ease;
+  animation-delay: .4s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes appear {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+}
+
+agm-map {
+  height: 250px;
 }
