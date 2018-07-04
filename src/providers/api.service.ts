@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from "rxjs/Observable";
 import { ILaunch } from '../app/models/ILaunch';
-import { ICapsule } from '../app/models/ICapsule';
+import { ICapsule, ICapsulePart } from '../app/models/ICapsule';
 import { ILaunchpad } from '../app/models/ILaunchpad';
 import { IRocket } from '../app/models/IRocket';
 import { ICompanyInfos } from '../app/models/ICompany';
@@ -59,4 +59,19 @@ export class ApiService {
     const endPointUrl: string = this.baseUrl + 'info';
     return this.http.get<ICompanyInfos>(endPointUrl);
   }
+
+  public getCapsuleBySerial(serial: string): Observable<ICapsule> {
+    return new Observable<ICapsule>((observer) => {
+      const endPointPart: string = this.baseUrl + 'parts/caps/' + serial;
+      this.http.get<ICapsulePart>(endPointPart).toPromise().then((part: ICapsulePart) => {
+        const endPointCapsule: string = this.baseUrl + 'capsules/' + part.capsule_id;
+
+        this.http.get<ICapsule>(endPointCapsule).subscribe((capsule: ICapsule) => {
+          observer.next(capsule);
+          observer.complete();
+        })
+      });
+    });
+  }
+
 }
