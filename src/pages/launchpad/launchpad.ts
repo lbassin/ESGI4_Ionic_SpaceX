@@ -13,8 +13,6 @@ export class LaunchpadPage {
 
   constructor(private navParams: NavParams) {
     this.launchpad = this.navParams.get('data') ? this.navParams.get('data') : this.navParams.data;
-
-    console.log(this.launchpad);
   }
 
 }
