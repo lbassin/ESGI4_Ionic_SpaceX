@@ -88,4 +88,8 @@ export class DataService {
   public getCompanyInfos(): Observable<ICompanyInfos> {
     return this.apiService.getCompanyInfos();
   }
+
+  public getCapsuleBySerial(serial: string): Observable<ICapsule>{
+    return this.apiService.getCapsuleBySerial(serial);
+  }
 }
