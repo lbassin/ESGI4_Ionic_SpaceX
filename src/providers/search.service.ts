@@ -21,8 +21,6 @@ interface ISearcher {
 @Injectable()
 export class SearchService {
 
-  private static readonly dummyImage: string = 'https://dummyimage.com/120x120';
-
   private dataSource: Array<{ data: Observable<any>, resultHandler: any, page: any }>;
   private subject: Subject<ISearchResult>;
   private result: ISearchResult;
@@ -90,13 +88,13 @@ export class SearchService {
   }
 
   private defaultResults(): void {
-    const elementMaxCount = 3;
+    const elementMaxCount = 6;
 
     this.dataSource.forEach((elements: ISearcher) => {
       elements.data.subscribe((data: any) => {
         let results = {data: []} as ISearchResultGroup;
 
-        data.slice(0, elementMaxCount).forEach((element: any) => {
+        data.reverse().slice(0, elementMaxCount).forEach((element: any) => {
           results = elements.resultHandler(results, element, elements.page);
         });
 
@@ -190,7 +188,7 @@ export class SearchService {
     results.data.push({
       title: launch.mission_name,
       description: launch.details,
-      image: launch.links.mission_patch_small ? launch.links.mission_patch_small : SearchService.dummyImage,
+      image: launch.links.mission_patch_small ? launch.links.mission_patch_small : "https://i.imgur.com/PXf7knY.png",
       page: page,
       data: launch
     } as ISearchResultEntry);
