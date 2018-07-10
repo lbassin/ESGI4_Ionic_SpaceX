@@ -26,7 +26,7 @@ export class DataService {
     return this.apiService.getNextLaunch();
   }
 
-  public getPastLaunches(): Observable<ILaunch[]> {
+  public getPastLaunches(filters: any = {}): Observable<ILaunch[]> {
     if (this.cacheService.has(CacheService.pastLaunchesKey)) {
       return this.cacheService.get(CacheService.pastLaunchesKey);
     }
@@ -34,7 +34,7 @@ export class DataService {
     return this.apiService.getPastLaunches();
   }
 
-  public getUpcomingLaunches(): Observable<ILaunch[]> {
+  public getUpcomingLaunches(filters: any = {}): Observable<ILaunch[]> {
     if (this.cacheService.has(CacheService.upcomingLaunchesKey)) {
       return this.cacheService.get(CacheService.upcomingLaunchesKey);
     }

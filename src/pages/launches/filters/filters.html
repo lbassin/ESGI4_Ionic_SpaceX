@@ -1,0 +1,17 @@
+<ion-list no-margin>
+  <ion-item>
+    <ion-label>Order</ion-label>
+    <ion-select [(ngModel)]="order">
+      <ion-option value="asc">Newest first</ion-option>
+      <ion-option value="desc">Older first</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Year of launch</ion-label>
+    <ion-select [(ngModel)]="year">
+      <ion-option *ngFor="let year of availableYears">{{ year }}</ion-option>
+    </ion-select>
+  </ion-item>
+
+  <button ion-item text-center color="primary" (click)="close()">Close</button>
+</ion-list>

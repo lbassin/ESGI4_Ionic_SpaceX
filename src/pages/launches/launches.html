@@ -17,7 +17,7 @@
 <ion-content no-padding>
   <div *ngIf="endLoadingData; else loadingData">
     <ion-card class="anim-next-launch" (click)="goToLaunch(nextLaunch)">
-      <ion-item> 
+      <ion-item>
         <ion-avatar item-start class="ionic-next-launch-avatar">
           <img src="{{ nextLaunch?.links.mission_patch_small | missionImage: {mission_name: launch?.mission_name} }}">
         </ion-avatar>
@@ -73,7 +73,7 @@
       </ng-template>
     </ion-card>
 
-    <div padding class="anim-type-launch">
+    <div padding class="anim-type-launch row-filters">
       <ion-segment [(ngModel)]="typeLaunches">
         <ion-segment-button value="upcoming">
           Upcoming
@@ -82,6 +82,7 @@
           Past
         </ion-segment-button>
       </ion-segment>
+      <ion-icon class="settings-icon" name="settings" (click)="presentPopover($event)"></ion-icon>
     </div>
 
     <div [ngSwitch]="typeLaunches" class="anim-upcoming-launch">

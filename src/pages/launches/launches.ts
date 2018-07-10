@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController } from 'ionic-angular';
+import { IonicPage, NavController, PopoverController } from 'ionic-angular';
 import { ILaunch } from '../../app/models/ILaunch';
 import { DataService } from '../../providers/data.service';
 import { LaunchPage } from '../launch/launch';
 import { InfosPage } from "../infos/infos";
+import { FiltersPage } from './filters/filters';
+import { ISubscription } from 'rxjs/Subscription';
+import { IFilter } from '../../app/models/IFilter';
 
 @IonicPage()
 @Component({
@@ -26,7 +29,13 @@ export class LaunchesPage {
   public upcomingLaunches: ILaunch[] = [];
   public pastLaunches: ILaunch[] = [];
 
-  constructor(private navCtrl: NavController, private dataService: DataService) {
+  private orderFilter: string;
+  private yearFilter: number;
+
+  private upcomingSubscription: ISubscription;
+  private pastSubscription: ISubscription;
+
+  constructor(private navCtrl: NavController, private dataService: DataService, private popoverCtrl: PopoverController) {
 
     this.dataService.getNextLaunch().subscribe((data: ILaunch) => {
       this.nextLaunch = data;
@@ -47,15 +56,7 @@ export class LaunchesPage {
       }, 1000);
     });
 
-    this.dataService.getUpcomingLaunches().subscribe((data: ILaunch[]) => {
-      data.shift();
-      this.upcomingLaunches = data;
-    });
-
-    this.dataService.getPastLaunches().subscribe((data: ILaunch[]) => {
-      this.pastLaunches = data.reverse();
-      this.endLoadingData = true;
-    });
+    this.updateLaunches();
   }
 
   private amazingCountdownFunction(toDate: Date) {
@@ -84,7 +85,65 @@ export class LaunchesPage {
       data: launch
     });
   }
-  goToInfos( ) {
+
+  goToInfos() {
     this.navCtrl.push(InfosPage);
+  }
+
+  presentPopover(event) {
+    const filters = this.getFiltersData();
+    let popover = this.popoverCtrl.create(FiltersPage, filters);
+
+    popover.present({
+      ev: event
+    });
+
+    popover.onDidDismiss((data: { order: string, year: number }) => {
+      this.orderFilter = undefined;
+      this.yearFilter = undefined;
+
+      if (data) {
+        this.orderFilter = data.order;
+        this.yearFilter = data.year;
+      }
+
+      this.updateLaunches();
+    })
+  }
+
+  updateLaunches() {
+    if (this.upcomingSubscription) {
+      this.upcomingSubscription.unsubscribe();
+    }
+
+    if (this.pastSubscription) {
+      this.pastSubscription.unsubscribe();
+    }
+
+    const filters = this.getFiltersData();
+
+    this.upcomingSubscription = this.dataService.getUpcomingLaunches(filters).subscribe((data: ILaunch[]) => {
+      data.shift();
+      this.upcomingLaunches = data;
+    });
+
+    this.pastSubscription = this.dataService.getPastLaunches(filters).subscribe((data: ILaunch[]) => {
+      this.pastLaunches = data.reverse();
+      this.endLoadingData = true;
+    });
+  }
+
+  private getFiltersData(): IFilter {
+    let filters = {} as IFilter;
+
+    if (this.yearFilter) {
+      filters['year'] = this.yearFilter;
+    }
+
+    if (this.orderFilter) {
+      filters['order'] = this.orderFilter;
+    }
+
+    return filters;
   }
 }
