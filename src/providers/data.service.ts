@@ -6,7 +6,7 @@ import { ICapsule } from '../app/models/ICapsule';
 import { ILaunch } from '../app/models/ILaunch';
 import { ApiService } from './api.service';
 import { CacheService } from './cache.service';
-import { ICompanyInfos } from '../app/models/ICompany';
+import { ICompanyInfos, ICompanyHistory } from '../app/models/ICompany';
 
 @Injectable()
 export class DataService {
@@ -86,7 +86,19 @@ export class DataService {
   }
 
   public getCompanyInfos(): Observable<ICompanyInfos> {
+    if (this.cacheService.has(CacheService.infosKey)) {
+      return this.cacheService.get(CacheService.infosKey);
+    }
+
     return this.apiService.getCompanyInfos();
+  }
+
+  public getCompanyHistory(): Observable<ICompanyHistory[]> {
+    if (this.cacheService.has(CacheService.infosHistoryKey)) {
+      return this.cacheService.get(CacheService.infosHistoryKey);
+    }
+
+    return this.apiService.getCompanyHistory();
   }
 
   public getCapsuleBySerial(serial: string): Observable<ICapsule>{

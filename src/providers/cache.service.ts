@@ -15,6 +15,8 @@ export class CacheService {
   public static allLaunchesKey: string = 'all_launches';
   public static pastLaunchesKey: string = 'past_launches';
   public static upcomingLaunchesKey: string = 'upcoming_launches';
+  public static infosKey: string = 'infos';
+  public static infosHistoryKey: string = 'infos_history';
 
   constructor(private apiService: ApiService) {
   }
@@ -56,6 +58,8 @@ export class CacheService {
       {key: CacheService.launchpadsKey, data: this.apiService.getAllLaunchpads()},
       {key: CacheService.pastLaunchesKey, data: this.apiService.getPastLaunches()},
       {key: CacheService.upcomingLaunchesKey, data: this.apiService.getUpcomingLaunches()},
+      {key: CacheService.infosKey, data: this.apiService.getCompanyInfos()},
+      {key: CacheService.infosHistoryKey, data: this.apiService.getCompanyHistory()},
     ];
 
     toCache.forEach(element => {

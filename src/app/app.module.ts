@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from "ng2-charts";
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 import { MyApp } from './app.component';
 import { LaunchesPage } from '../pages/launches/launches';
@@ -25,9 +26,11 @@ import { RocketPage } from '../pages/rocket/rocket';
 import { InfosPage } from "../pages/infos/infos";
 import { InfosSpaceXPage } from "../pages/infos/infos-space-x/infos-space-x";
 import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
-import {LaunchChartPage} from "../pages/infos/infos-charts/charts/launch-chart/launch-chart";
-import {SafChartPage} from "../pages/infos/infos-charts/charts/saf-chart/saf-chart";
-import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
+import { LaunchChartPage } from "../pages/infos/infos-charts/charts/launch-chart/launch-chart";
+import { SafChartPage } from "../pages/infos/infos-charts/charts/saf-chart/saf-chart";
+import { FirstStageChartPage } from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
+import { InfosHistoryPage } from "../pages/infos/infos-history/info-history";
+import { InfosHistoryDetailsPage } from "../pages/infos/infos-history/infos-history-details/infos-history-details";
 
 
 @NgModule({
@@ -45,6 +48,8 @@ import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stag
     InfosPage,
     InfosSpaceXPage,
     InfosChartsPage,
+    InfosHistoryPage,
+    InfosHistoryDetailsPage,
     LaunchChartPage,
     SafChartPage,
     FirstStageChartPage,
@@ -71,6 +76,8 @@ import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stag
     InfosPage,
     InfosChartsPage,
     InfosSpaceXPage,
+    InfosHistoryPage,
+    InfosHistoryDetailsPage,
     LaunchChartPage,
     SafChartPage,
     FirstStageChartPage
@@ -82,7 +89,8 @@ import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stag
     ApiService,
     CacheService,
     DataService,
-    SearchService
+    SearchService,
+    InAppBrowser
   ]
 })
 export class AppModule {

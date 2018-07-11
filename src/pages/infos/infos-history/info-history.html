@@ -1,0 +1,38 @@
+<!--
+  Generated template for the InfosHistoryPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>infoHistory</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="state?.rendered">
+    <ion-item-group *ngFor="let years of datas">
+      <ion-item-divider color="light">{{years.year}}</ion-item-divider>
+      <div *ngFor="let data of years.data">
+        <ion-item>
+          <ion-card>
+
+            <ion-card-header style="white-space: normal; text-align: center;">
+              <strong style="display: block;">{{ data.flight_number != null ? 'Flight n°'+data.flight_number : '' }}</strong> {{data.title}}
+            </ion-card-header>
+
+            <ion-card-content style="white-space: normal;">
+              <button ion-button block (click)="showDetails(data)">
+                Details
+              </button>
+            </ion-card-content>
+          </ion-card>
+        </ion-item>
+      </div>
+    </ion-item-group>
+  </div>
+</ion-content>

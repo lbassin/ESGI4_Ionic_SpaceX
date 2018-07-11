@@ -5,7 +5,7 @@ import { ILaunch } from '../app/models/ILaunch';
 import { ICapsule, ICapsulePart } from '../app/models/ICapsule';
 import { ILaunchpad } from '../app/models/ILaunchpad';
 import { IRocket } from '../app/models/IRocket';
-import { ICompanyInfos } from '../app/models/ICompany';
+import { ICompanyInfos, ICompanyHistory } from '../app/models/ICompany';
 
 @Injectable()
 export class ApiService {
@@ -58,6 +58,11 @@ export class ApiService {
   public getCompanyInfos(): Observable<ICompanyInfos> {
     const endPointUrl: string = this.baseUrl + 'info';
     return this.http.get<ICompanyInfos>(endPointUrl);
+  }
+
+  public getCompanyHistory(): Observable<ICompanyHistory[]> {
+    const endPointUrl: string = this.baseUrl + 'info/history';
+    return this.http.get<ICompanyHistory[]>(endPointUrl);
   }
 
   public getCapsuleBySerial(serial: string): Observable<ICapsule> {
