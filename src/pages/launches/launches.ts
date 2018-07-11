@@ -123,7 +123,13 @@ export class LaunchesPage {
     const filters = this.getFiltersData();
 
     this.upcomingSubscription = this.dataService.getUpcomingLaunches(filters).subscribe((data: ILaunch[]) => {
-      data.shift();
+
+      if (Object.keys(filters).length === 0 || filters.order == 'asc') {
+        data.shift();
+      } else {
+        data.pop();
+      }
+
       this.upcomingLaunches = data;
     });
 
