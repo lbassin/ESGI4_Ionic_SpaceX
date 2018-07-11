@@ -137,7 +137,7 @@ export class LaunchesPage {
     let filters = {} as IFilter;
 
     if (this.yearFilter) {
-      filters['year'] = this.yearFilter;
+      filters['launch_year'] = this.yearFilter;
     }
 
     if (this.orderFilter) {

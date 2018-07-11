@@ -104,6 +104,11 @@
                             <ion-badge no-margin color="primary">Orbit : {{launch?.rocket.second_stage.payloads[0].orbit}}</ion-badge>
                         </span>
           </ion-item>
+          <ion-item *ngIf="upcomingLaunches.length <= 0">
+            <p text-center>
+              No upcoming launches found
+            </p>
+          </ion-item>
         </ion-list>
       </ion-list>
 
@@ -130,6 +135,11 @@
             <span *ngIf="launch?.rocket.second_stage.payloads[0].orbit">
                             <ion-badge no-margin color="primary">Orbit : {{launch?.rocket.second_stage.payloads[0].orbit}}</ion-badge>
                         </span>
+          </ion-item>
+          <ion-item *ngIf="pastLaunches.length <= 0">
+            <p text-center>
+              No past launches found
+            </p>
           </ion-item>
         </ion-list>
       </ion-list>

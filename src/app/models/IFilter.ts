@@ -1,4 +1,4 @@
 export interface IFilter {
   order: string,
-  year: number
+  launch_year: number
 }

@@ -16,7 +16,7 @@ export class FiltersPage {
     this.initFilters();
 
     this.availableYears = [];
-    for (let i = new Date().getFullYear(); i >= 2006; i--) {
+    for (let i = new Date().getFullYear() + 1; i >= 2006; i--) {
       this.availableYears.push(i);
     }
   }
@@ -29,7 +29,7 @@ export class FiltersPage {
   }
 
   private initFilters() {
-    this.year = this.navParams.get('year');
+    this.year = this.navParams.get('launch_year');
     this.order = this.navParams.get('order');
   }
 }
