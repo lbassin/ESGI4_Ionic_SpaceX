@@ -37,16 +37,15 @@ export class InfosChartsPage {
       title: 'Rockets with reusable first stage',
       page:  FirstStageChartPage
     }
-  ]
+  ];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private app: App) {
+  constructor(public navParams: NavParams, private app: App) {
   }
 
   moveToCharts(value:string) {
 
     this.datas.forEach( data => {
       if (value === data.name) {
-        console.log(data.title);
         this.app.getRootNav().push(data.page, {
           title : data.title
         });

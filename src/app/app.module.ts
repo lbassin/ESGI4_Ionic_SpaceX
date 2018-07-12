@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { AgmCoreModule } from '@agm/core';
 import { ChartsModule } from "ng2-charts";
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 import { MyApp } from './app.component';
 import { LaunchesPage } from '../pages/launches/launches';
@@ -30,6 +31,8 @@ import { SafChartPage } from "../pages/infos/infos-charts/charts/saf-chart/saf-c
 import { FirstStageChartPage } from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { FiltersPage } from '../pages/launches/filters/filters';
+import { InfosHistoryPage } from "../pages/infos/infos-history/info-history";
+import { InfosHistoryDetailsPage } from "../pages/infos/infos-history/infos-history-details/infos-history-details";
 
 @NgModule({
   declarations: [
@@ -46,6 +49,8 @@ import { FiltersPage } from '../pages/launches/filters/filters';
     InfosPage,
     InfosSpaceXPage,
     InfosChartsPage,
+    InfosHistoryPage,
+    InfosHistoryDetailsPage,
     LaunchChartPage,
     SafChartPage,
     FirstStageChartPage,
@@ -72,6 +77,8 @@ import { FiltersPage } from '../pages/launches/filters/filters';
     InfosPage,
     InfosChartsPage,
     InfosSpaceXPage,
+    InfosHistoryPage,
+    InfosHistoryDetailsPage,
     LaunchChartPage,
     SafChartPage,
     FirstStageChartPage,
@@ -85,7 +92,8 @@ import { FiltersPage } from '../pages/launches/filters/filters';
     CacheService,
     DataService,
     SearchService,
-    LocalNotifications,
+    InAppBrowser,
+    LocalNotifications
   ]
 })
 export class AppModule {
