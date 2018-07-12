@@ -25,10 +25,11 @@ import { RocketPage } from '../pages/rocket/rocket';
 import { InfosPage } from "../pages/infos/infos";
 import { InfosSpaceXPage } from "../pages/infos/infos-space-x/infos-space-x";
 import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
-import {LaunchChartPage} from "../pages/infos/infos-charts/charts/launch-chart/launch-chart";
-import {SafChartPage} from "../pages/infos/infos-charts/charts/saf-chart/saf-chart";
-import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
-
+import { LaunchChartPage } from "../pages/infos/infos-charts/charts/launch-chart/launch-chart";
+import { SafChartPage } from "../pages/infos/infos-charts/charts/saf-chart/saf-chart";
+import { FirstStageChartPage } from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FiltersPage } from '../pages/launches/filters/filters';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stag
     LaunchChartPage,
     SafChartPage,
     FirstStageChartPage,
-
+    FiltersPage,
   ],
   imports: [
     BrowserModule,
@@ -73,7 +74,8 @@ import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stag
     InfosSpaceXPage,
     LaunchChartPage,
     SafChartPage,
-    FirstStageChartPage
+    FirstStageChartPage,
+    FiltersPage,
   ],
   providers: [
     StatusBar,
@@ -82,7 +84,8 @@ import {FirstStageChartPage} from "../pages/infos/infos-charts/charts/first-stag
     ApiService,
     CacheService,
     DataService,
-    SearchService
+    SearchService,
+    LocalNotifications,
   ]
 })
 export class AppModule {
