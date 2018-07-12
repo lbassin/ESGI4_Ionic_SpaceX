@@ -1,117 +1,134 @@
 page-launches {
-    .list-ios > .item-block:last-child,
-    .list-ios > .item-wrapper:last-child .item-block {
-        border-bottom: none;
-    }
+  .list-ios > .item-block:last-child,
+  .list-ios > .item-wrapper:last-child .item-block {
+    border-bottom: none;
+  }
 
-    .ionic-next-launch-avatar img {
-        width: 65px !important;
-        height: 65px !important;
-    }
+  .ionic-next-launch-avatar img {
+    width: 65px !important;
+    height: 65px !important;
+  }
 
-    .ionic-next-launch-badge {
-        margin: 0 !important;
-    }
+  .ionic-next-launch-badge {
+    margin: 0 !important;
+  }
 
-    .ionic-row-margin-bottom {
-        margin-bottom: 5px;
-    }
+  .ionic-row-margin-bottom {
+    margin-bottom: 5px;
+  }
 
-    .ionic-next-launch-detail {
-        padding: 15px !important;
-    }
+  .ionic-next-launch-detail {
+    padding: 15px !important;
+  }
 
-    .ionic-countdown-fontsize {
-        font-size: 25px;
-    }
+  .ionic-countdown-fontsize {
+    font-size: 25px;
+  }
 
-    .ionic-live-button {
-        width: 100%;
+  .ionic-live-button {
+    width: 100%;
 
-        .live-circle {
-            width: 10px;
-            height: 11px;
-            background: rgb(255, 0, 0);
-            border-radius: 10px;
-            margin-left: 20px;
-            margin-top: 1px;
-            animation: pulseLive 1.2s infinite;
-        }
+    .live-circle {
+      width: 10px;
+      height: 11px;
+      background: rgb(255, 0, 0);
+      border-radius: 10px;
+      margin-left: 20px;
+      margin-top: 1px;
+      animation: pulseLive 1.2s infinite;
     }
+  }
 
-    @keyframes pulseLive {
-        0% { }
-        70% {
-            box-shadow: 0 0 0 15px rgba(255, 0, 0, 0.12);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
-        }
+  @keyframes pulseLive {
+    0% {
     }
+    70% {
+      box-shadow: 0 0 0 15px rgba(255, 0, 0, 0.12);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 0, 0, 0);
+    }
+  }
 
-    .card-ios {
-        margin: 12px;
-        margin-bottom: 0px;
-        border-radius: 2px;
-        width: calc(100% - 24px);
-        font-size: 1.4rem;
-        background: #fff;
-        -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-    }
+  .card-ios {
+    margin: 12px;
+    margin-bottom: 0px;
+    border-radius: 2px;
+    width: calc(100% - 24px);
+    font-size: 1.4rem;
+    background: #fff;
+    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  }
 
-    .anim-next-launch {
-        border-radius: 5px;
-        box-shadow: 0 3px 6px rgba(0, 0, 0, 0), 0 3px 6px rgba(0, 0, 0, 0.15);
-        animation: appear .9s ease;
-    }
+  .anim-next-launch {
+    border-radius: 5px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0), 0 3px 6px rgba(0, 0, 0, 0.15);
+    animation: appear .9s ease;
+  }
 
-    .anim-type-launch {
-        opacity: 0;
-        animation: appear .7s ease;
-        animation-delay: .1s;
-        animation-fill-mode: forwards;
-    }
+  .anim-type-launch {
+    opacity: 0;
+    animation: appear .7s ease;
+    animation-delay: .1s;
+    animation-fill-mode: forwards;
+  }
 
-    .anim-upcoming-launch {
-        opacity: 0;
-        animation: appear .7s ease;
-        animation-delay: .4s;
-        animation-fill-mode: forwards;
-    }
+  .anim-upcoming-launch {
+    opacity: 0;
+    animation: appear .7s ease;
+    animation-delay: .4s;
+    animation-fill-mode: forwards;
+  }
 
-    @keyframes appear {
-        0% {
-            opacity: 0;
-            transform: translateY(50px);
-        }
-        100% {
-            opacity: 1;
-            transform: translateY(0px);
-        }
+  @keyframes appear {
+    0% {
+      opacity: 0;
+      transform: translateY(50px);
     }
+    100% {
+      opacity: 1;
+      transform: translateY(0px);
+    }
+  }
 
-    .loader {
-        position: relative;
-        top: 50%;
-        left: 50%;
-        transform: translate(-10px, -10px);
-        display: inline-block;
-        height: 20px;
-        width: 20px;
-        border: 2px solid rgba(0, 0, 0, 0.2);
-        border-radius: 50px;
-        box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.21);
-        animation: pulse 1.2s infinite;
-    }
+  .loader {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-10px, -10px);
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border: 2px solid rgba(0, 0, 0, 0.2);
+    border-radius: 50px;
+    box-shadow: 0 0 0 0 rgba(0, 0, 0, 0.21);
+    animation: pulse 1.2s infinite;
+  }
 
-    @keyframes pulse {
-        0% { }
-        70% {
-            box-shadow: 0 0 0 30px rgba(255, 255, 255, 0);
-        }
-        100% {
-            box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-        }
+  @keyframes pulse {
+    0% {
     }
+    70% {
+      box-shadow: 0 0 0 30px rgba(255, 255, 255, 0);
+    }
+    100% {
+      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+  }
+
+  ion-icon.settings-icon {
+    text-align: right;
+    width: 10%;
+    font-size: 1.6em;
+  }
+
+  /deep/ ion-segment {
+    width: 90%;
+  }
+
+  .row-filters {
+    display: flex;
+    align-items: center;
+  }
 }

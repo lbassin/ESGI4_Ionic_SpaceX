@@ -6,6 +6,7 @@ import { ICapsule, ICapsulePart } from '../app/models/ICapsule';
 import { ILaunchpad } from '../app/models/ILaunchpad';
 import { IRocket } from '../app/models/IRocket';
 import { ICompanyInfos, ICompanyHistory } from '../app/models/ICompany';
+import { IFilter } from '../app/models/IFilter';
 
 @Injectable()
 export class ApiService {
@@ -25,13 +26,25 @@ export class ApiService {
     return this.http.get<ILaunch>(endPointUrl);
   }
 
-  public getPastLaunches(): Observable<ILaunch[]> {
-    const endPointUrl: string = this.baseUrl + 'launches';
+  public getPastLaunches(filters: IFilter): Observable<ILaunch[]> {
+    let  endPointUrl: string = this.baseUrl + 'launches';
+
+    const params = this.filterToQueryString(filters);
+    if (params) {
+      endPointUrl += '?' + params;
+    }
+
     return this.http.get<ILaunch[]>(endPointUrl);
   }
 
-  public getUpcomingLaunches(): Observable<ILaunch[]> {
-    const endPointUrl: string = this.baseUrl + 'launches/upcoming';
+  public getUpcomingLaunches(filters: IFilter): Observable<ILaunch[]> {
+    let endPointUrl: string = this.baseUrl + 'launches/upcoming';
+
+    const params = this.filterToQueryString(filters);
+    if (params) {
+      endPointUrl += '?' + params;
+    }
+
     return this.http.get<ILaunch[]>(endPointUrl);
   }
 
@@ -77,6 +90,14 @@ export class ApiService {
         })
       });
     });
+  }
+
+  private filterToQueryString(filters: IFilter) {
+    if (!filters) {
+      return '';
+    }
+
+    return Object.keys(filters).map(key => key + '=' + filters[key]).join('&');
   }
 
 }

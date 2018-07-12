@@ -29,9 +29,10 @@ import { InfosChartsPage } from "../pages/infos/infos-charts/infos-charts";
 import { LaunchChartPage } from "../pages/infos/infos-charts/charts/launch-chart/launch-chart";
 import { SafChartPage } from "../pages/infos/infos-charts/charts/saf-chart/saf-chart";
 import { FirstStageChartPage } from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
+import { LocalNotifications } from '@ionic-native/local-notifications';
+import { FiltersPage } from '../pages/launches/filters/filters';
 import { InfosHistoryPage } from "../pages/infos/infos-history/info-history";
 import { InfosHistoryDetailsPage } from "../pages/infos/infos-history/infos-history-details/infos-history-details";
-
 
 @NgModule({
   declarations: [
@@ -53,7 +54,7 @@ import { InfosHistoryDetailsPage } from "../pages/infos/infos-history/infos-hist
     LaunchChartPage,
     SafChartPage,
     FirstStageChartPage,
-
+    FiltersPage,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +81,8 @@ import { InfosHistoryDetailsPage } from "../pages/infos/infos-history/infos-hist
     InfosHistoryDetailsPage,
     LaunchChartPage,
     SafChartPage,
-    FirstStageChartPage
+    FirstStageChartPage,
+    FiltersPage,
   ],
   providers: [
     StatusBar,
@@ -90,7 +92,8 @@ import { InfosHistoryDetailsPage } from "../pages/infos/infos-history/infos-hist
     CacheService,
     DataService,
     SearchService,
-    InAppBrowser
+    InAppBrowser,
+    LocalNotifications
   ]
 })
 export class AppModule {

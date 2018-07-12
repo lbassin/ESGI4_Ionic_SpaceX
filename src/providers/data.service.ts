@@ -7,6 +7,7 @@ import { ILaunch } from '../app/models/ILaunch';
 import { ApiService } from './api.service';
 import { CacheService } from './cache.service';
 import { ICompanyInfos, ICompanyHistory } from '../app/models/ICompany';
+import { IFilter } from '../app/models/IFilter';
 
 @Injectable()
 export class DataService {
@@ -26,20 +27,20 @@ export class DataService {
     return this.apiService.getNextLaunch();
   }
 
-  public getPastLaunches(): Observable<ILaunch[]> {
-    if (this.cacheService.has(CacheService.pastLaunchesKey)) {
+  public getPastLaunches(filters: IFilter): Observable<ILaunch[]> {
+    if (Object.keys(filters).length === 0 && this.cacheService.has(CacheService.pastLaunchesKey)) {
       return this.cacheService.get(CacheService.pastLaunchesKey);
     }
 
-    return this.apiService.getPastLaunches();
+    return this.apiService.getPastLaunches(filters);
   }
 
-  public getUpcomingLaunches(): Observable<ILaunch[]> {
-    if (this.cacheService.has(CacheService.upcomingLaunchesKey)) {
+  public getUpcomingLaunches(filters: IFilter): Observable<ILaunch[]> {
+    if (Object.keys(filters).length === 0 && this.cacheService.has(CacheService.upcomingLaunchesKey)) {
       return this.cacheService.get(CacheService.upcomingLaunchesKey);
     }
 
-    return this.apiService.getUpcomingLaunches();
+    return this.apiService.getUpcomingLaunches(filters);
   }
 
   public getAllRockets(): Observable<IRocket[]> {
@@ -101,7 +102,7 @@ export class DataService {
     return this.apiService.getCompanyHistory();
   }
 
-  public getCapsuleBySerial(serial: string): Observable<ICapsule>{
+  public getCapsuleBySerial(serial: string): Observable<ICapsule> {
     return this.apiService.getCapsuleBySerial(serial);
   }
 }
