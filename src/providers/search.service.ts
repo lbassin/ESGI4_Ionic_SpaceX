@@ -88,7 +88,7 @@ export class SearchService {
   }
 
   private defaultResults(): void {
-    const elementMaxCount = 6;
+    const elementMaxCount = 30;
 
     this.dataSource.forEach((elements: ISearcher) => {
       elements.data.subscribe((data: any) => {

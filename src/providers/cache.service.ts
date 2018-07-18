@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs/Observable';
+import { IFilter } from '../app/models/IFilter';
 
 @Injectable()
 export class CacheService {
@@ -56,8 +57,8 @@ export class CacheService {
       {key: CacheService.capsulesKey, data: this.apiService.getAllCapsules()},
       {key: CacheService.allLaunchesKey, data: this.apiService.getAllLaunches()},
       {key: CacheService.launchpadsKey, data: this.apiService.getAllLaunchpads()},
-      {key: CacheService.pastLaunchesKey, data: this.apiService.getPastLaunches()},
-      {key: CacheService.upcomingLaunchesKey, data: this.apiService.getUpcomingLaunches()},
+      {key: CacheService.pastLaunchesKey, data: this.apiService.getPastLaunches({} as IFilter)},
+      {key: CacheService.upcomingLaunchesKey, data: this.apiService.getUpcomingLaunches({} as IFilter)},
       {key: CacheService.infosKey, data: this.apiService.getCompanyInfos()},
       {key: CacheService.infosHistoryKey, data: this.apiService.getCompanyHistory()},
     ];

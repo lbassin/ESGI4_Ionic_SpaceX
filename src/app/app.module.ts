@@ -30,9 +30,10 @@ import { LaunchChartPage } from "../pages/infos/infos-charts/charts/launch-chart
 import { SafChartPage } from "../pages/infos/infos-charts/charts/saf-chart/saf-chart";
 import { FirstStageChartPage } from "../pages/infos/infos-charts/charts/first-stage-chart/first-stage-chart";
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { InfosHistoryPage } from '../pages/infos/infos-history/info-history';
+import { InfosHistoryDetailsPage } from '../pages/infos/infos-history/infos-history-details/infos-history-details';
 import { FiltersPage } from '../pages/launches/filters/filters';
-import { InfosHistoryPage } from "../pages/infos/infos-history/info-history";
-import { InfosHistoryDetailsPage } from "../pages/infos/infos-history/infos-history-details/infos-history-details";
+
 
 @NgModule({
   declarations: [
@@ -92,8 +93,8 @@ import { InfosHistoryDetailsPage } from "../pages/infos/infos-history/infos-hist
     CacheService,
     DataService,
     SearchService,
+    LocalNotifications,
     InAppBrowser,
-    LocalNotifications
   ]
 })
 export class AppModule {
