@@ -20,21 +20,21 @@ export class InfosChartsPage {
 
   public datas = [
     {
-      icon : 'main-icon/rocket.svg',
+      icon : 'main-icon/003-rocket-1.svg',
       name: 'launches',
       title: 'Launches by years',
       page:  LaunchChartPage
     },
     {
-      icon : 'main-icon/rocket.svg',
+      icon : 'main-icon/002-rocket-2.svg',
       name: 'saf',
       title: 'Success and Fail',
       page:  SafChartPage
     },
     {
-      icon : 'main-icon/rocket.svg',
+      icon : 'main-icon/001-reuse.svg',
       name: 'rrfs',
-      title: 'Rockets with reusable first stage',
+      title: 'Reusable first stage',
       page:  FirstStageChartPage
     }
   ];
